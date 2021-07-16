@@ -1,1 +1,8 @@
-vendor/
+# dependencies
+/vendor
+
+# misc
+Thumbs.db
+.DS_Store
+/.idea
+/.vscode
