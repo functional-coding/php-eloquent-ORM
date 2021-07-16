@@ -1,19 +1,27 @@
 {
-    "name": "dbwhddn10/f-service-illuminate",
-    "version": "2.1.0",
+    "name": "functional-coding/php-illuminate",
     "authors": [
         {
-            "name": "dbwhddn10",
-            "email": "dbwhddn10@gmail.com"
+            "email": "dbwhddn10@gmail.com",
+            "name": "jongwoo Yoo"
         }
     ],
+    "require": {
+        "functional-coding/php": "*",
+        "illuminate/database": "*",
+        "illuminate/http": "*",
+        "illuminate/pagination": "*",
+        "illuminate/support": "*",
+        "illuminate/validation": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
     "autoload": {
         "psr-4": {
-            "Dbwhddn10\\FService\\Illuminate\\": "src/"
+            "FunctionalCoding\\Illuminate\\": "src/",
+            "FunctionalCoding\\Illuminate\\Tests\\": "tests/"
         }
-    },
-    "require": {
-        "dbwhddn10/f-service-php": "dev-master"
     },
     "license": "MIT"
 }
