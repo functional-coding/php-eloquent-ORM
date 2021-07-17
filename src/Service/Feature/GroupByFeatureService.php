@@ -15,7 +15,7 @@ class GroupByFeatureService extends Service
         ];
     }
 
-    public static function getArrCallbackLists()
+    public static function getArrCallbacks()
     {
         return [
             'query.group_by' => function ($groupBy, $query) {

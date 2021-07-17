@@ -14,7 +14,7 @@ class RandomListService extends Service
         return [];
     }
 
-    public static function getArrCallbackLists()
+    public static function getArrCallbacks()
     {
         return [
             'query.order_by' => function ($query) {

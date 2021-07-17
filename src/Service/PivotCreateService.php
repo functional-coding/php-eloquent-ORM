@@ -12,7 +12,7 @@ class PivotCreateService extends Service
         return [];
     }
 
-    public static function getArrCallbackLists()
+    public static function getArrCallbacks()
     {
         return [
             'model.related' => function ($model, $related, $relatedMethod) {

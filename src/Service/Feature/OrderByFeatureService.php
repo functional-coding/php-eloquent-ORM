@@ -15,7 +15,7 @@ class OrderByFeatureService extends Service
         ];
     }
 
-    public static function getArrCallbackLists()
+    public static function getArrCallbacks()
     {
         return [
             'query.order_by_array' => function ($orderByArray, $query) {

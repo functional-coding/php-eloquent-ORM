@@ -15,7 +15,7 @@ class FieldsFeatureService extends Service
         ];
     }
 
-    public static function getArrCallbackLists()
+    public static function getArrCallbacks()
     {
         return [
             'query.fields' => function ($availableFields, $fields='', $query) {

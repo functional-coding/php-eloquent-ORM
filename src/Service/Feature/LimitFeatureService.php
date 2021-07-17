@@ -12,7 +12,7 @@ class LimitFeatureService extends Service
         return [];
     }
 
-    public static function getArrCallbackLists()
+    public static function getArrCallbacks()
     {
         return [
             'query.limit' => function ($limit, $query) {

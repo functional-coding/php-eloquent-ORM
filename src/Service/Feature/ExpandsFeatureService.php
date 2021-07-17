@@ -18,7 +18,7 @@ class ExpandsFeatureService extends Service
         ];
     }
 
-    public static function getArrCallbackLists()
+    public static function getArrCallbacks()
     {
         return [
             'result.expands' => function ($expands, $result) {
