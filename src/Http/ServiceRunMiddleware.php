@@ -1,9 +1,9 @@
 <?php
 
-namespace Dbwhddn10\FService\Illuminate\Http;
+namespace FunctionalCoding\Illuminate\Http;
 
-use Dbwhddn10\FService\Illuminate\Model;
-use Dbwhddn10\FService\Service;
+use FunctionalCoding\Illuminate\Model;
+use FunctionalCoding\Service;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Arr;

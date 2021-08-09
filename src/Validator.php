@@ -1,6 +1,6 @@
 <?php
 
-namespace Dbwhddn10\FService\Illuminate;
+namespace FunctionalCoding\Illuminate;
 
 class Validator extends \Illuminate\Validation\Validator
 {

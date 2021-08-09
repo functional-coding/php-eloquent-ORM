@@ -1,6 +1,6 @@
 <?php
 
-namespace Dbwhddn10\FService\Illuminate\Http;
+namespace FunctionalCoding\Illuminate\Http;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Request;

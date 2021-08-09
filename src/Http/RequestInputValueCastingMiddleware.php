@@ -1,6 +1,6 @@
 <?php
 
-namespace Dbwhddn10\FService\Illuminate\Http;
+namespace FunctionalCoding\Illuminate\Http;
 
 class RequestInputValueCastingMiddleware
 {

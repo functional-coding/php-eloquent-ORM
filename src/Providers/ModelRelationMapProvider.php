@@ -1,6 +1,6 @@
 <?php
 
-namespace Dbwhddn10\FService\Illuminate\Providers;
+namespace FunctionalCoding\Illuminate\Providers;
 
 use ArrayIterator;
 use Illuminate\Container\Container;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Dbwhddn10\FService\Illuminate\Providers;
+namespace FunctionalCoding\Illuminate\Providers;
 
-use Dbwhddn10\FService\Illuminate\Validator;
-use Dbwhddn10\FService\Service;
+use FunctionalCoding\Illuminate\Validator;
+use FunctionalCoding\Service;
 use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Factory as ValidationFactory;

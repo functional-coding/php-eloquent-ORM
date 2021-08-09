@@ -1,8 +1,8 @@
 <?php
 
-namespace Dbwhddn10\FService\Illuminate\Http;
+namespace FunctionalCoding\Illuminate\Http;
 
-use Dbwhddn10\FService\Service;
+use FunctionalCoding\Service;
 use Illuminate\Support\Arr;
 
 class ServiceParameterSettingMiddleware
