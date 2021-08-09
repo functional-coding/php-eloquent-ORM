@@ -2,8 +2,8 @@
 
 namespace FunctionalCoding\Illuminate;
 
-use FunctionalCoding\Service;
 use FunctionalCoding\Illuminate\Feature\ModelFeatureService;
+use FunctionalCoding\Service;
 
 class PivotDeleteService extends Service
 {
@@ -15,13 +15,11 @@ class PivotDeleteService extends Service
     public static function getArrCallbacks()
     {
         return [
-            'model.related' => function ($model, $related='', $relatedMethod) {
-
+            'model.related' => function ($model, $related = '', $relatedMethod) {
                 $relObj = $model->{$relatedMethod}();
 
-                if ( $related )
-                {
-                    $relObj->wherePivot($relObj->relatedPivotKey,  $related->getKey());
+                if ($related) {
+                    $relObj->wherePivot($relObj->relatedPivotKey, $related->getKey());
                 }
 
                 $relObj->detach();
@@ -33,17 +31,14 @@ class PivotDeleteService extends Service
     {
         return [
             'related' => function ($relatedId) {
-
-                throw new \Exception;
+                throw new \Exception();
             },
 
             'related_method' => function () {
-
-                throw new \Exception;
+                throw new \Exception();
             },
 
             'result' => function () {
-
                 return null;
             },
         ];
@@ -57,11 +52,9 @@ class PivotDeleteService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'related'
-                => ['not_null'],
+            'related' => ['not_null'],
 
-            'related_id'
-                => ['integer'],
+            'related_id' => ['integer'],
         ];
     }
 

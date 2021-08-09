@@ -6,22 +6,14 @@ class RequestInputValueCastingMiddleware
 {
     public function handle($request, $next)
     {
-        foreach ( $request->all() as $key => $value )
-        {
-            if ( $value === null )
-            {
+        foreach ($request->all() as $key => $value) {
+            if (null === $value) {
                 $value = '';
-            }
-            else if ( $value === 'null' )
-            {
+            } elseif ('null' === $value) {
                 $value = null;
-            }
-            else if ( $value === 'false' )
-            {
+            } elseif ('false' === $value) {
                 $value = false;
-            }
-            else if ( $value === 'true' )
-            {
+            } elseif ('true' === $value) {
                 $value = true;
             }
 

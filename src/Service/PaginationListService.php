@@ -2,13 +2,13 @@
 
 namespace FunctionalCoding\Illuminate;
 
-use FunctionalCoding\Service;
-use FunctionalCoding\Illuminate\Pagination\CursorPaginationService;
-use FunctionalCoding\Illuminate\Pagination\OffsetPaginationService;
 use FunctionalCoding\Illuminate\Feature\ExpandsFeatureService;
 use FunctionalCoding\Illuminate\Feature\FieldsFeatureService;
 use FunctionalCoding\Illuminate\Feature\LimitFeatureService;
 use FunctionalCoding\Illuminate\Feature\OrderByFeatureService;
+use FunctionalCoding\Illuminate\Pagination\CursorPaginationService;
+use FunctionalCoding\Illuminate\Pagination\OffsetPaginationService;
+use FunctionalCoding\Service;
 
 class PaginationListService extends Service
 {
@@ -26,41 +26,27 @@ class PaginationListService extends Service
     {
         return [
             'cursor' => function () {
-
-                throw new \Exception;
+                throw new \Exception();
             },
 
-            'result' => function ($cursor='', $limit, $orderByArray, $page='', $query) {
-
-                if ( $page !== '' )
-                {
+            'result' => function ($cursor = '', $limit, $orderByArray, $page = '', $query) {
+                if ('' !== $page) {
                     return [OffsetPaginationService::class, [
-                        'limit'
-                            => $limit,
-                        'page'
-                            => $page,
-                        'query'
-                            => $query,
+                        'limit' => $limit,
+                        'page' => $page,
+                        'query' => $query,
                     ], [
-                        'limit'
-                            => '{{limit}}',
-                        'page'
-                            => '{{page}}',
+                        'limit' => '{{limit}}',
+                        'page' => '{{page}}',
                     ]];
                 }
-                else
-                {
-                    return [CursorPaginationService::class, [
-                        'cursor'
-                            => $cursor,
-                        'limit'
-                            => $limit,
-                        'order_by_array'
-                            => $orderByArray,
-                        'query'
-                            => $query,
-                    ]];
-                }
+
+                return [CursorPaginationService::class, [
+                    'cursor' => $cursor,
+                    'limit' => $limit,
+                    'order_by_array' => $orderByArray,
+                    'query' => $query,
+                ]];
             },
         ];
     }
@@ -73,8 +59,7 @@ class PaginationListService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'cursor_id'
-                => ['integer'],
+            'cursor_id' => ['integer'],
         ];
     }
 

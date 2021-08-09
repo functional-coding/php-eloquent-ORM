@@ -2,8 +2,8 @@
 
 namespace FunctionalCoding\Illuminate;
 
-use FunctionalCoding\Service;
 use FunctionalCoding\Illuminate\Feature\ModelFeatureService;
+use FunctionalCoding\Service;
 
 class PivotCreateService extends Service
 {
@@ -16,7 +16,6 @@ class PivotCreateService extends Service
     {
         return [
             'model.related' => function ($model, $related, $relatedMethod) {
-
                 $model->{$relatedMethod}()->attach($related->getKey());
             },
         ];
@@ -26,17 +25,14 @@ class PivotCreateService extends Service
     {
         return [
             'related' => function () {
-
-                throw new \Exception;
+                throw new \Exception();
             },
 
             'related_method' => function () {
-
-                throw new \Exception;
+                throw new \Exception();
             },
 
             'result' => function ($model) {
-
                 return $model;
             },
         ];
@@ -50,11 +46,9 @@ class PivotCreateService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'related'
-                => ['not_null'],
+            'related' => ['not_null'],
 
-            'related_id'
-                => ['required', 'integer'],
+            'related_id' => ['required', 'integer'],
         ];
     }
 

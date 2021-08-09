@@ -2,10 +2,10 @@
 
 namespace FunctionalCoding\Illuminate;
 
-use FunctionalCoding\Service;
 use FunctionalCoding\Illuminate\Feature\ExpandsFeatureService;
 use FunctionalCoding\Illuminate\Feature\FieldsFeatureService;
 use FunctionalCoding\Illuminate\Feature\LimitFeatureService;
+use FunctionalCoding\Service;
 
 class RandomListService extends Service
 {
@@ -18,7 +18,6 @@ class RandomListService extends Service
     {
         return [
             'query.order_by' => function ($query) {
-
                 $query->orderByRaw('RAND()');
             },
         ];
@@ -28,15 +27,12 @@ class RandomListService extends Service
     {
         return [
             'result' => function ($selectQuery) {
-
                 return $selectQuery->get();
             },
 
             'select_query' => function ($query) {
-
                 return [SelectQueryService::class, [
-                    'query'
-                        => $query
+                    'query' => $query,
                 ]];
             },
         ];

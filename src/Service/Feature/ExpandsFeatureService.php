@@ -2,7 +2,6 @@
 
 namespace FunctionalCoding\Illuminate\Feature;
 
-use FunctionalCoding\Illuminate\Feature\QueryFeatureService;
 use FunctionalCoding\Illuminate\Model;
 use FunctionalCoding\Service;
 use Illuminate\Database\Eloquent\Collection;
@@ -13,8 +12,7 @@ class ExpandsFeatureService extends Service
     public static function getArrBindNames()
     {
         return [
-            'available_expands'
-                => 'options for {{expands}}',
+            'available_expands' => 'options for {{expands}}',
         ];
     }
 
@@ -22,25 +20,17 @@ class ExpandsFeatureService extends Service
     {
         return [
             'result.expands' => function ($expands, $result) {
-
                 $expands = preg_split('/\s*,\s*/', $expands);
 
-                if ( $result instanceof Model )
-                {
+                if ($result instanceof Model) {
                     $collection = $result->newCollection();
                     $collection->push($result);
-                }
-                else if ( $result instanceof Collection )
-                {
+                } elseif ($result instanceof Collection) {
                     $collection = $result;
-                }
-                else if ( $result instanceof LengthAwarePaginator )
-                {
+                } elseif ($result instanceof LengthAwarePaginator) {
                     $collection = $result->getCollection();
-                }
-                else
-                {
-                    throw new \Exception;
+                } else {
+                    throw new \Exception();
                 }
 
                 $collection->load($expands);
@@ -52,8 +42,7 @@ class ExpandsFeatureService extends Service
     {
         return [
             'available_expands' => function () {
-
-                throw new \Exception;
+                throw new \Exception();
             },
         ];
     }
@@ -66,8 +55,7 @@ class ExpandsFeatureService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'expands'
-                => ['string', 'several_in:{{available_expands}}'],
+            'expands' => ['string', 'several_in:{{available_expands}}'],
         ];
     }
 

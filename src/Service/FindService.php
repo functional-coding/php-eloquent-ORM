@@ -2,10 +2,10 @@
 
 namespace FunctionalCoding\Illuminate;
 
-use FunctionalCoding\Service;
 use FunctionalCoding\Illuminate\Feature\ExpandsFeatureService;
 use FunctionalCoding\Illuminate\Feature\FieldsFeatureService;
 use FunctionalCoding\Illuminate\Feature\ModelFeatureService;
+use FunctionalCoding\Service;
 
 class FindService extends Service
 {
@@ -23,7 +23,6 @@ class FindService extends Service
     {
         return [
             'result' => function ($model) {
-
                 return $model;
             },
         ];

@@ -20,12 +20,10 @@ class QueryFeatureService extends Service
     {
         return [
             'model_class' => function () {
-
-                throw new \Exception;
+                throw new \Exception();
             },
 
             'query' => function ($modelClass) {
-
                 return $modelClass::query();
             },
         ];

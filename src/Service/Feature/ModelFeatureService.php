@@ -3,15 +3,13 @@
 namespace FunctionalCoding\Illuminate\Feature;
 
 use FunctionalCoding\Service;
-use FunctionalCoding\Illuminate\Feature\QueryFeatureService;
 
 class ModelFeatureService extends Service
 {
     public static function getArrBindNames()
     {
         return [
-            'model'
-                => 'model for {{id}}',
+            'model' => 'model for {{id}}',
         ];
     }
 
@@ -19,7 +17,6 @@ class ModelFeatureService extends Service
     {
         return [
             'query.id' => function ($id, $query) {
-
                 $query->where($query->getModel()->getKeyName(), $id);
             },
         ];
@@ -29,7 +26,6 @@ class ModelFeatureService extends Service
     {
         return [
             'model' => function ($query) {
-
                 return $query->first();
             },
         ];
@@ -43,11 +39,9 @@ class ModelFeatureService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'id'
-                => ['required', 'integer'],
+            'id' => ['required', 'integer'],
 
-            'model'
-                => ['not_null']
+            'model' => ['not_null'],
         ];
     }
 

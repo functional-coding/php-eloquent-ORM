@@ -19,51 +19,39 @@ class CursorPaginationService extends Service
     public static function getArrLoaders()
     {
         return [
-            'result' => function ($cursor='', $limit, $orderByArray, $query) {
-
+            'result' => function ($cursor = '', $limit, $orderByArray, $query) {
                 $wheres = [];
                 $result = [];
 
-                foreach ( $orderByArray as $column => $direction )
-                {
-                    if ( empty($cursor) )
-                    {
+                foreach ($orderByArray as $column => $direction) {
+                    if (empty($cursor)) {
                         break;
                     }
 
-                    if ( $direction == 'asc' )
-                    {
+                    if ('asc' == $direction) {
                         $wheres[] = [$column, '>', $cursor->{$column}];
-                    }
-                    else
-                    {
+                    } else {
                         $wheres[] = [$column, '<', $cursor->{$column}];
                     }
                 }
 
-                do
-                {
+                do {
                     $newQuery = clone $query;
 
-                    foreach ( $wheres as $i => $where )
-                    {
-                        if ( $where == end($wheres) )
-                        {
+                    foreach ($wheres as $i => $where) {
+                        if ($where == end($wheres)) {
                             $newQuery->where($where[0], $where[1], $where[2]);
-                        }
-                        else
-                        {
+                        } else {
                             $newQuery->where($where[0], '=', $where[2]);
                         }
                     }
 
                     array_pop($wheres);
 
-                    $list   = $newQuery->get();
-                    $limit  = $limit - count($list);
+                    $list = $newQuery->get();
+                    $limit = $limit - count($list);
                     $result = array_merge($result, $list->all());
-                }
-                while ( $limit != 0 && count($wheres) != 0 );
+                } while (0 != $limit && 0 != count($wheres));
 
                 return $query->getModel()->newCollection($result);
             },

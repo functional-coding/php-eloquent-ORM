@@ -2,12 +2,8 @@
 
 namespace Dbwhddn10\FService\Illuminate;
 
-use Closure;
-use Dbwhddn10\FService\Illuminate\Model;
-use Dbwhddn10\FService\Illuminate\Query;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class Relation extends \Illuminate\Database\Eloquent\Relations\Relation
 {
@@ -17,8 +13,8 @@ class Relation extends \Illuminate\Database\Eloquent\Relations\Relation
 
     public function __construct(Query $query, Model $parent, array $localKeys, array $otherKeys, $isManyRelation)
     {
-        $this->localKeys      = $localKeys;
-        $this->otherKeys      = $otherKeys;
+        $this->localKeys = $localKeys;
+        $this->otherKeys = $otherKeys;
         $this->isManyRelation = $isManyRelation;
 
         parent::__construct($query, $parent);
@@ -26,20 +22,13 @@ class Relation extends \Illuminate\Database\Eloquent\Relations\Relation
 
     public function getLocalValue($model, $key)
     {
-        if ( $key == ':auth_user_id:' && Auth::user() )
-        {
+        if (':auth_user_id:' == $key && Auth::user()) {
             $val = Auth::user()->getKey();
-        }
-        else if ( $key == ':auth_user_id:')
-        {
+        } elseif (':auth_user_id:' == $key) {
             $val = null;
-        }
-        else if ( $key == ':model_type:' )
-        {
+        } elseif (':model_type:' == $key) {
             $val = array_flip(static::morphMap())[get_class($model)];
-        }
-        else
-        {
+        } else {
             $val = $model->getAttributes()[$key];
         }
 
@@ -49,9 +38,7 @@ class Relation extends \Illuminate\Database\Eloquent\Relations\Relation
     public function addConstraints()
     {
         if (static::$constraints) {
-
-            foreach ( $this->localKeys as $i => $key )
-            {
+            foreach ($this->localKeys as $i => $key) {
                 $otherKey = $this->otherKeys[$i];
 
                 $this->query->where($otherKey, $this->getLocalValue($this->parent, $key));
@@ -61,15 +48,13 @@ class Relation extends \Illuminate\Database\Eloquent\Relations\Relation
 
     public function addEagerConstraints(array $models)
     {
-        $colRow  = 'ROW(`'.implode('`,`', $this->otherKeys).'`)';
+        $colRow = 'ROW(`'.implode('`,`', $this->otherKeys).'`)';
         $valRows = [];
 
-        foreach ( $models as $model )
-        {
+        foreach ($models as $model) {
             $vals = [];
 
-            foreach ( $this->localKeys as $key )
-            {
+            foreach ($this->localKeys as $key) {
                 $vals[] = $this->getLocalValue($model, $key);
             }
 
@@ -81,14 +66,10 @@ class Relation extends \Illuminate\Database\Eloquent\Relations\Relation
 
     public function initRelation(array $models, $relation)
     {
-        foreach ( $models as $model )
-        {
-            if ( $this->isManyRelation )
-            {
+        foreach ($models as $model) {
+            if ($this->isManyRelation) {
                 $model->setRelation($relation, $this->query->getModel()->newCollection());
-            }
-            else
-            {
+            } else {
                 $model->setRelation($relation, null);
             }
         }
@@ -100,12 +81,10 @@ class Relation extends \Illuminate\Database\Eloquent\Relations\Relation
     {
         $list = [];
 
-        foreach ( $results as $result )
-        {
+        foreach ($results as $result) {
             $keyVals = [];
 
-            foreach ( $this->otherKeys as $key )
-            {
+            foreach ($this->otherKeys as $key) {
                 $keyVals[] = $result->getAttributes()[$key];
             }
 
@@ -114,25 +93,19 @@ class Relation extends \Illuminate\Database\Eloquent\Relations\Relation
             $list[$key] = $result;
         }
 
-        foreach ( $models as $model )
-        {
+        foreach ($models as $model) {
             $keyVals = [];
 
-            foreach ( $this->localKeys as $key )
-            {
+            foreach ($this->localKeys as $key) {
                 $keyVals[] = $this->getLocalValue($model, $key);
             }
 
             $key = implode(',', $keyVals);
 
-            if ( array_key_exists($key, $list) )
-            {
-                if ( $model->getRelation($relation) instanceof Collection )
-                {
+            if (array_key_exists($key, $list)) {
+                if ($model->getRelation($relation) instanceof Collection) {
                     $model->getRelation($relation)->push($list[$key]);
-                }
-                else
-                {
+                } else {
                     $model->setRelation($relation, $list[$key]);
                 }
             }
@@ -143,21 +116,16 @@ class Relation extends \Illuminate\Database\Eloquent\Relations\Relation
 
     public function getResults()
     {
-        foreach ( $this->localKeys as $key )
-        {
-            if ( is_null($this->parent->{$key}) )
-            {
+        foreach ($this->localKeys as $key) {
+            if (is_null($this->parent->{$key})) {
                 return;
             }
         }
 
-        if ( $this->isManyRelation )
-        {
+        if ($this->isManyRelation) {
             return $this->get();
         }
-        else
-        {
-            return $this->first();
-        }
+
+        return $this->first();
     }
 }

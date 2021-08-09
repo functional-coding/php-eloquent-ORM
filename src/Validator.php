@@ -14,10 +14,10 @@ class Validator extends \Illuminate\Validation\Validator
             $customAttributes
         );
 
-        $this->sizeRules  = array_merge($this->sizeRules, [
-            'Less', 'More'
+        $this->sizeRules = array_merge($this->sizeRules, [
+            'Less', 'More',
         ]);
-        $this->implicitRules  = array_merge($this->implicitRules, [
+        $this->implicitRules = array_merge($this->implicitRules, [
             // ... add some implicit custom rules
         ]);
         $this->dependentRules = array_merge($this->dependentRules, [
@@ -30,59 +30,27 @@ class Validator extends \Illuminate\Validation\Validator
         return parent::addError($attribute, $rule, $parameters);
     }
 
-    protected function getCustomAttribute($key)
-    {
-        if ( array_key_exists($key, $this->customAttributes) )
-        {
-            return $this->customAttributes[$key];
-        }
-
-        return $key;
-    }
-
     public function getDisplayableAttribute($attribute)
     {
-        $pAttr        = $this->getPrimaryAttribute($attribute);
+        $pAttr = $this->getPrimaryAttribute($attribute);
         $asteriskKeys = $this->getExplicitKeys($attribute);
-        $cAttr        = $this->getCustomAttribute($pAttr);
-        $matches      = [];
+        $cAttr = $this->getCustomAttribute($pAttr);
+        $matches = [];
 
-        if ( $asteriskKeys != [] )
-        {
+        if ([] != $asteriskKeys) {
             $cAttr = str_replace('*', $asteriskKeys[0], $cAttr);
         }
 
         return $cAttr;
     }
 
-    protected function replaceLess($message, $attribute, $rule, $parameters)
-    {
-        return str_replace(':less', $parameters[0], $message);
-    }
-
-    protected function replaceMore($message, $attribute, $rule, $parameters)
-    {
-        return str_replace(':more', $parameters[0], $message);
-    }
-
-    protected function replaceSeveralIn($message, $attribute, $rule, $parameters)
-    {
-        $options = $this->getValue($parameters[0]);
-        $options = implode(',', $options);
-
-        return str_replace(':list', $options, $message);
-    }
-
     public function validateBase64($attribute, $value, $parameters, $validator)
     {
-        if ( base64_encode(base64_decode($value, true)) === $value )
-        {
+        if (base64_encode(base64_decode($value, true)) === $value) {
             return true;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     public function validateBase64Image($attribute, $value, $parameters, $validator)
@@ -102,7 +70,7 @@ class Validator extends \Illuminate\Validation\Validator
 
     public function validateFalse($attribute, $value, $parameters, $validator)
     {
-        return $value === false || $value === 'false' || $value === 0 || $value === '0';
+        return false === $value || 'false' === $value || 0 === $value || '0' === $value;
     }
 
     public function validateInIf($attribute, $value, $parameters)
@@ -111,8 +79,7 @@ class Validator extends \Illuminate\Validation\Validator
 
         $parameters[0] = $this->getValue($parameters[0]);
 
-        if ( $parameters[0] != $parameters[1] )
-        {
+        if ($parameters[0] != $parameters[1]) {
             return true;
         }
 
@@ -123,17 +90,15 @@ class Validator extends \Illuminate\Validation\Validator
 
     public function validateIntegers($attribute, $value)
     {
-        if ( ! $this->validateString($attribute, $value) && ! $this->validateInteger($attribute, $value) )
-        {
+        if (!$this->validateString($attribute, $value) && !$this->validateInteger($attribute, $value)) {
             return false;
         }
 
         $integers = preg_split('/\s*,\s*/', $value);
         $result = true;
 
-        foreach ( $integers as $integer )
-        {
-            ! $this->validateInteger($attribute, $integer) ?
+        foreach ($integers as $integer) {
+            !$this->validateInteger($attribute, $integer) ?
                 $result = false : null;
         }
 
@@ -146,8 +111,7 @@ class Validator extends \Illuminate\Validation\Validator
 
         $parameters[0] = $this->getValue($parameters[0]);
 
-        if ( $parameters[0] == $parameters[1] )
-        {
+        if ($parameters[0] == $parameters[1]) {
             return true;
         }
 
@@ -160,7 +124,7 @@ class Validator extends \Illuminate\Validation\Validator
     {
         $this->requireParameterCount(1, $parameters, 'less');
 
-        if ($value instanceof UploadedFile && ! $value->isValid()) {
+        if ($value instanceof UploadedFile && !$value->isValid()) {
             return false;
         }
 
@@ -176,7 +140,7 @@ class Validator extends \Illuminate\Validation\Validator
 
     public function validateNotNull($attribute, $value)
     {
-        return ! $this->validateNull($attribute, $value);
+        return !$this->validateNull($attribute, $value);
     }
 
     public function validateNotNullIf($attribute, $value, $parameters)
@@ -185,8 +149,7 @@ class Validator extends \Illuminate\Validation\Validator
 
         $ifValue = $this->getValue($parameters[0]);
 
-        if ( $ifValue != $parameters[1] )
-        {
+        if ($ifValue != $parameters[1]) {
             return true;
         }
 
@@ -199,8 +162,7 @@ class Validator extends \Illuminate\Validation\Validator
 
         $ifValue = $this->getValue($parameters[0]);
 
-        if ( $ifValue == $parameters[1] )
-        {
+        if ($ifValue == $parameters[1]) {
             return true;
         }
 
@@ -209,8 +171,7 @@ class Validator extends \Illuminate\Validation\Validator
 
     public function validateNull($attribute, $value)
     {
-        if ( is_null($value) )
-        {
+        if (is_null($value)) {
             return true;
         }
 
@@ -223,8 +184,7 @@ class Validator extends \Illuminate\Validation\Validator
 
         $ifValue = $this->getValue($parameters[0]);
 
-        if ( $ifValue != $parameters[1] )
-        {
+        if ($ifValue != $parameters[1]) {
             return true;
         }
 
@@ -237,8 +197,7 @@ class Validator extends \Illuminate\Validation\Validator
 
         $ifValue = $this->getValue($parameters[0]);
 
-        if ( $ifValue == $parameters[1] )
-        {
+        if ($ifValue == $parameters[1]) {
             return true;
         }
 
@@ -251,8 +210,7 @@ class Validator extends \Illuminate\Validation\Validator
 
         $limit = $parameters[0];
 
-        if ( array_key_exists($limit, $this->data) )
-        {
+        if (array_key_exists($limit, $this->data)) {
             $parameters[0] = $this->getValue($limit);
         }
 
@@ -265,8 +223,7 @@ class Validator extends \Illuminate\Validation\Validator
 
         $limit = $parameters[0];
 
-        if ( array_key_exists($limit, $this->data) )
-        {
+        if (array_key_exists($limit, $this->data)) {
             $parameters[0] = $this->getValue($limit);
         }
 
@@ -280,8 +237,7 @@ class Validator extends \Illuminate\Validation\Validator
         $search = $this->getValue($parameters[0]);
         $string = $parameters[1];
 
-        if ( strpos($search, $string) !== false )
-        {
+        if (false !== strpos($search, $string)) {
             return $this->validateRequired($attribute, $value);
         }
 
@@ -293,13 +249,11 @@ class Validator extends \Illuminate\Validation\Validator
         $this->requireParameterCount(1, $parameters, 'several_in');
 
         $isValid = true;
-        $value   = preg_split('/\s*,\s*/', $value);
+        $value = preg_split('/\s*,\s*/', $value);
         $options = $this->getValue($parameters[0]);
 
-        foreach ( $value as $key )
-        {
-            if ( ! in_array($key, $options) )
-            {
+        foreach ($value as $key) {
+            if (!in_array($key, $options)) {
                 $isValid = false;
             }
         }
@@ -309,7 +263,33 @@ class Validator extends \Illuminate\Validation\Validator
 
     public function validateTrue($attribute, $value, $parameters, $validator)
     {
-        return $value === true || $value === 'true' || $value === 1 || $value === '1';
+        return true === $value || 'true' === $value || 1 === $value || '1' === $value;
     }
 
+    protected function getCustomAttribute($key)
+    {
+        if (array_key_exists($key, $this->customAttributes)) {
+            return $this->customAttributes[$key];
+        }
+
+        return $key;
+    }
+
+    protected function replaceLess($message, $attribute, $rule, $parameters)
+    {
+        return str_replace(':less', $parameters[0], $message);
+    }
+
+    protected function replaceMore($message, $attribute, $rule, $parameters)
+    {
+        return str_replace(':more', $parameters[0], $message);
+    }
+
+    protected function replaceSeveralIn($message, $attribute, $rule, $parameters)
+    {
+        $options = $this->getValue($parameters[0]);
+        $options = implode(',', $options);
+
+        return str_replace(':list', $options, $message);
+    }
 }

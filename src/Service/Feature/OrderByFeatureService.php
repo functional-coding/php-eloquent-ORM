@@ -3,15 +3,13 @@
 namespace FunctionalCoding\Illuminate\Feature;
 
 use FunctionalCoding\Service;
-use FunctionalCoding\Illuminate\Feature\QueryFeatureService;
 
 class OrderByFeatureService extends Service
 {
     public static function getArrBindNames()
     {
         return [
-            'available_order_by'
-                => 'options for {{order_by}}',
+            'available_order_by' => 'options for {{order_by}}',
         ];
     }
 
@@ -19,9 +17,7 @@ class OrderByFeatureService extends Service
     {
         return [
             'query.order_by_array' => function ($orderByArray, $query) {
-
-                foreach ( $orderByArray as $key => $direction )
-                {
+                foreach ($orderByArray as $key => $direction) {
                     $query->orderBy($key, $direction);
                 }
             },
@@ -32,47 +28,36 @@ class OrderByFeatureService extends Service
     {
         return [
             'available_order_by' => function ($modelClass) {
+                if (null == $modelClass::CREATED_AT) {
+                    return [(new $modelClass())->getKeyName().' desc', (new $modelClass())->getKeyName().' asc'];
+                }
 
-                if ( $modelClass::CREATED_AT == null )
-                {
-                    return [(new $modelClass)->getKeyName().' desc', (new $modelClass)->getKeyName().' asc'];
-                }
-                else
-                {
-                    return [$modelClass::CREATED_AT.' desc', $modelClass::CREATED_AT.' asc'];
-                }
+                return [$modelClass::CREATED_AT.' desc', $modelClass::CREATED_AT.' asc'];
             },
 
             'order_by' => function ($modelClass) {
+                if (null == $modelClass::CREATED_AT) {
+                    return (new $modelClass())->getKeyName().' desc';
+                }
 
-                if ( $modelClass::CREATED_AT == null )
-                {
-                    return (new $modelClass)->getKeyName().' desc';
-                }
-                else
-                {
-                    return $modelClass::CREATED_AT.' desc';
-                }
+                return $modelClass::CREATED_AT.' desc';
             },
 
             'order_by_array' => function ($modelClass, $orderBy) {
-
-                $model   = new $modelClass;
+                $model = new $modelClass();
                 $orderBy = preg_replace('/\s+/', ' ', $orderBy);
                 $orderBy = preg_replace('/\s*,\s*/', ',', $orderBy);
-                $orders  = explode(',', $orderBy);
-                $array   = [];
+                $orders = explode(',', $orderBy);
+                $array = [];
 
-                foreach ( $orders as $order )
-                {
-                    $key       = explode(' ', $order)[0];
+                foreach ($orders as $order) {
+                    $key = explode(' ', $order)[0];
                     $direction = str_replace($key, '', $order);
 
                     $array[$key] = ltrim($direction);
                 }
 
-                if ( array_keys($array)[count($array)-1] != $model->getKeyName() )
-                {
+                if (array_keys($array)[count($array) - 1] != $model->getKeyName()) {
                     $array[$model->getKeyName()] = end($array);
                 }
 
@@ -89,8 +74,7 @@ class OrderByFeatureService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'order_by'
-                => ['string', 'in_array:{{available_order_by}}.*'],
+            'order_by' => ['string', 'in_array:{{available_order_by}}.*'],
         ];
     }
 

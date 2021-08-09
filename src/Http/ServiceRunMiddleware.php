@@ -5,12 +5,11 @@ namespace Dbwhddn10\FService\Illuminate\Http;
 use Dbwhddn10\FService\Illuminate\Model;
 use Dbwhddn10\FService\Service;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Http\Response;
 use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Arr;
 
 class ServiceRunMiddleware
 {
@@ -22,25 +21,23 @@ class ServiceRunMiddleware
         chdir('../');
 
         $response = $next($request);
-        $arr      = $response->getOriginalContent();
+        $arr = $response->getOriginalContent();
 
-        if ( !Service::isInitable($arr) )
-        {
-            $response->{Arr::last(explode('\\', get_class($response))) == 'Response' ? 'setContent': 'setData'}([
-                'result' => $arr
+        if (!Service::isInitable($arr)) {
+            $response->{'Response' == Arr::last(explode('\\', get_class($response))) ? 'setContent' : 'setData'}([
+                'result' => $arr,
             ]);
 
             return $response;
         }
 
-        $service  = Service::initService($arr);
+        $service = Service::initService($arr);
         $service->run();
 
         $errors = $service->totalErrors();
         $result = $service->data()->get('result');
 
-        if ( $result instanceof AbstractPaginator )
-        {
+        if ($result instanceof AbstractPaginator) {
             $path = preg_replace('/api\//', '', Request::path());
             $path = $path.'?'.Request::getQueryString();
             $path = preg_replace('/(\&|)page\=\d*/', '', $path);
@@ -51,26 +48,21 @@ class ServiceRunMiddleware
             $data = $result->getCollection();
             $data = $this->restify($data);
             $data = $result->setCollection(collect($data));
-        }
-        else
-        {
+        } else {
             $data = $this->restify($result);
         }
 
-        if ( $errors->isEmpty() )
-        {
-            $response->{Arr::last(explode('\\', get_class($response))) == 'Response' ? 'setContent': 'setData'}([
-                'result' => $data
+        if ($errors->isEmpty()) {
+            $response->{'Response' == Arr::last(explode('\\', get_class($response))) ? 'setContent' : 'setData'}([
+                'result' => $data,
             ]);
 
             DB::commit();
 
             $service->runAfterCommitCallbacks();
-        }
-        else
-        {
-            $response->{Arr::last(explode('\\', get_class($response))) == 'Response' ? 'setContent': 'setData'}([
-                'errors' => $errors
+        } else {
+            $response->{'Response' == Arr::last(explode('\\', get_class($response))) ? 'setContent' : 'setData'}([
+                'errors' => $errors,
             ]);
 
             DB::rollback();
@@ -81,25 +73,22 @@ class ServiceRunMiddleware
 
     public static function restify($result)
     {
-        if ( ! is_a($result, Model::class) && ! is_a($result, Collection::class) )
-        {
+        if (!is_a($result, Model::class) && !is_a($result, Collection::class)) {
             return $result;
         }
 
         $isModel = $result instanceof Model ? true : false;
-        $return  = [];
-        $items   = $isModel ? [$result] : $result->all();
+        $return = [];
+        $items = $isModel ? [$result] : $result->all();
 
-        foreach ( $items as $i => $item )
-        {
+        foreach ($items as $i => $item) {
             $type = array_flip(Relation::morphMap())[get_class($item)];
             $value = [];
             $value['_type'] = $type;
             $value['_attributes'] = $item->attributesToArray();
             $value['_relations'] = [];
 
-            foreach ( $item->getRelations() as $key => $relation )
-            {
+            foreach ($item->getRelations() as $key => $relation) {
                 $value['_relations'][$key] = static::restify($relation);
             }
 

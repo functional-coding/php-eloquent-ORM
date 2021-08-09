@@ -2,8 +2,8 @@
 
 namespace FunctionalCoding\Illuminate;
 
-use FunctionalCoding\Service;
 use FunctionalCoding\Illuminate\Feature\ModelFeatureService;
+use FunctionalCoding\Service;
 
 class DeleteService extends Service
 {
@@ -16,7 +16,6 @@ class DeleteService extends Service
     {
         return [
             'result.model' => function ($model) {
-
                 $model->delete();
             },
         ];
@@ -26,7 +25,6 @@ class DeleteService extends Service
     {
         return [
             'result' => function () {
-
                 return null;
             },
         ];

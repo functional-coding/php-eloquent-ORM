@@ -3,8 +3,8 @@
 namespace Dbwhddn10\FService\Illuminate\Providers;
 
 use ArrayIterator;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Container\Container;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use RecursiveDirectoryIterator;
@@ -15,9 +15,9 @@ class ModelRelationMapProvider extends ServiceProvider
 {
     public function register()
     {
-        $path  = Container::getInstance()->path('Models');
-        $dir   = new RecursiveDirectoryIterator($path);
-        $list  = new RecursiveIteratorIterator($dir);
+        $path = Container::getInstance()->path('Models');
+        $dir = new RecursiveDirectoryIterator($path);
+        $list = new RecursiveIteratorIterator($dir);
         $files = new RegexIterator($list, '/.+\.php$/');
         $types = [];
 
@@ -29,7 +29,7 @@ class ModelRelationMapProvider extends ServiceProvider
 
         foreach ($classes as $class) {
             $segs = explode('\\', $class);
-            $key  = Str::snake(array_pop($segs));
+            $key = Str::snake(array_pop($segs));
 
             $types[$key] = $class;
         }

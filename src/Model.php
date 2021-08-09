@@ -2,15 +2,12 @@
 
 namespace Dbwhddn10\FService\Illuminate;
 
-use Closure;
-use Dbwhddn10\FService\Illuminate\Query;
-use Dbwhddn10\FService\Illuminate\Relation;
 use Illuminate\Database\Eloquent\Collection;
 
 class Model extends \Illuminate\Database\Eloquent\Model
 {
-    const CREATED_AT = null;
-    const UPDATED_AT = null;
+    public const CREATED_AT = null;
+    public const UPDATED_AT = null;
 
     public $incrementing = false;
     protected $guarded = [];
@@ -42,7 +39,7 @@ class Model extends \Illuminate\Database\Eloquent\Model
 
     public function relation($related, array $localKeys, array $otherKeys, $isManyRelation)
     {
-        $query = (new $related)->newQuery();
+        $query = (new $related())->newQuery();
 
         return new Relation($query, $this, $localKeys, $otherKeys, $isManyRelation);
     }

@@ -2,10 +2,10 @@
 
 namespace FunctionalCoding\Illuminate;
 
-use FunctionalCoding\Service;
 use FunctionalCoding\Illuminate\Feature\ExpandsFeatureService;
 use FunctionalCoding\Illuminate\Feature\FieldsFeatureService;
 use FunctionalCoding\Illuminate\Feature\OrderByFeatureService;
+use FunctionalCoding\Service;
 
 class ListService extends Service
 {
@@ -23,7 +23,6 @@ class ListService extends Service
     {
         return [
             'result' => function ($query) {
-
                 return $query->get();
             },
         ];

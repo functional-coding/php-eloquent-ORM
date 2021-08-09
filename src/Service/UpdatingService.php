@@ -2,8 +2,8 @@
 
 namespace FunctionalCoding\Illuminate;
 
-use FunctionalCoding\Service;
 use FunctionalCoding\Illuminate\Feature\ModelFeatureService;
+use FunctionalCoding\Service;
 
 class UpdatingService extends Service
 {
@@ -16,7 +16,6 @@ class UpdatingService extends Service
     {
         return [
             'result.model' => function ($model) {
-
                 $model->save();
             },
         ];
@@ -26,7 +25,6 @@ class UpdatingService extends Service
     {
         return [
             'result' => function ($model) {
-
                 return $model;
             },
         ];

@@ -3,23 +3,20 @@
 namespace FunctionalCoding\Illuminate\Feature;
 
 use FunctionalCoding\Service;
-use FunctionalCoding\Illuminate\Feature\QueryFeatureService;
 
 class FieldsFeatureService extends Service
 {
     public static function getArrBindNames()
     {
         return [
-            'available_fields'
-                => 'options for {{fields}}',
+            'available_fields' => 'options for {{fields}}',
         ];
     }
 
     public static function getArrCallbacks()
     {
         return [
-            'query.fields' => function ($availableFields, $fields='', $query) {
-
+            'query.fields' => function ($availableFields, $fields = '', $query) {
                 $fields = $fields ? preg_split('/\s*,\s*/', $fields) : $availableFields;
 
                 $query->select($fields);
@@ -31,8 +28,7 @@ class FieldsFeatureService extends Service
     {
         return [
             'available_fields' => function ($modelClass) {
-
-                $model = new $modelClass;
+                $model = new $modelClass();
 
                 return array_merge($model->getFillable(), $model->getGuarded());
             },
@@ -47,8 +43,7 @@ class FieldsFeatureService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'fields'
-                => ['string', 'several_in:{{available_fields}}'],
+            'fields' => ['string', 'several_in:{{available_fields}}'],
         ];
     }
 

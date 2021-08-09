@@ -2,8 +2,8 @@
 
 namespace FunctionalCoding\Illuminate;
 
-use FunctionalCoding\Service;
 use FunctionalCoding\Illuminate\Feature\ModelFeatureService;
+use FunctionalCoding\Service;
 
 class SoftDeleteService extends Service
 {
@@ -16,8 +16,7 @@ class SoftDeleteService extends Service
     {
         return [
             'result.model' => function ($model) {
-
-                $model->deleted_at = (new \DateTime)->format('Y-m-d H:i:s');
+                $model->deleted_at = (new \DateTime())->format('Y-m-d H:i:s');
                 $model->save();
             },
         ];
@@ -27,7 +26,6 @@ class SoftDeleteService extends Service
     {
         return [
             'result' => function () {
-
                 return null;
             },
         ];

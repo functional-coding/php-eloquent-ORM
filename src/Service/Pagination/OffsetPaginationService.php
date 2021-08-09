@@ -2,14 +2,14 @@
 
 namespace FunctionalCoding\Illuminate\Pagination;
 
-use FunctionalCoding\Service;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
-use FunctionalCoding\Illuminate\SelectQueryService;
 use FunctionalCoding\Illuminate\Feature\LimitFeatureService;
+use FunctionalCoding\Illuminate\SelectQueryService;
+use FunctionalCoding\Service;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
-class OffsetPaginationService extends Service {
-
+class OffsetPaginationService extends Service
+{
     public static function getArrBindNames()
     {
         return [];
@@ -19,7 +19,6 @@ class OffsetPaginationService extends Service {
     {
         return [
             'query.skip' => function ($query, $skip) {
-
                 $query->skip($skip);
             },
         ];
@@ -29,7 +28,6 @@ class OffsetPaginationService extends Service {
     {
         return [
             'result' => function ($limit, $page, $query, $selectQuery) {
-
                 $query = (clone $query)->toBase();
                 $query->limit = null;
                 $query->offset = null;
@@ -42,21 +40,18 @@ class OffsetPaginationService extends Service {
                     'options' => [
                         'path' => Paginator::resolveCurrentPath(),
                         'pageName' => 'page',
-                    ]
+                    ],
                 ]);
             },
 
             'select_query' => function ($query) {
-
                 return [SelectQueryService::class, [
-                    'query'
-                        => $query,
+                    'query' => $query,
                 ]];
             },
 
             'skip' => function ($limit, $page) {
-
-                return ( $page - 1 ) * $limit;
+                return ($page - 1) * $limit;
             },
         ];
     }
@@ -69,8 +64,7 @@ class OffsetPaginationService extends Service {
     public static function getArrRuleLists()
     {
         return [
-            'page'
-                => ['required', 'integer', 'min:1'],
+            'page' => ['required', 'integer', 'min:1'],
         ];
     }
 
@@ -80,5 +74,4 @@ class OffsetPaginationService extends Service {
             LimitFeatureService::class,
         ];
     }
-
 }
