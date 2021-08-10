@@ -19,7 +19,7 @@ class ServiceParameterSettingMiddleware
         $class = $content[0];
         $data = Arr::get($content, 1, []);
         $names = Arr::get($content, 2, []);
-        $ruleLists = $class::getAllRuleLists()->all();
+        $ruleLists = $class::getAllRuleLists()->getArrayCopy();
 
         if (!isset($data['token']) && $request->offsetExists('token')) {
             $data['token'] = $request->offsetGet('token');
