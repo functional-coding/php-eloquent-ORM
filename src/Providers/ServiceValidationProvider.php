@@ -4,25 +4,28 @@ namespace FunctionalCoding\Illuminate\Providers;
 
 use FunctionalCoding\Illuminate\Validator;
 use FunctionalCoding\Service;
-use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Validation\Factory as ValidationFactory;
 
 class ServiceValidationProvider extends ServiceProvider
 {
-    public function boot()
+    public function register()
     {
         Service::setResolverForGetValidationErrors(function ($data = [], $ruleLists = [], $names = []) {
-            $app = Container::getInstance();
-            $factory = $app->make(ValidationFactory::class);
-            $factory->resolver(function ($tr, array $data, array $rules, array $messages, array $names) {
-                return $app->make(
+            $validation = $this->app->make('validator');
+            $validation->resolver(function ($tr, array $data, array $rules, array $messages, array $names) {
+                return $this->app->make(
                     Validator::class,
-                    compact('tr', 'data', 'rules', 'messages', 'names')
+                    [
+                        'translator' => $tr,
+                        'customAttributes'=> $names,
+                        'data' => $data,
+                        'rules' => $rules,
+                        'messages' =>$messages
+                    ]
                 );
             });
 
-            $validator = $factory->make($data, $ruleLists, $messages = [], $names);
+            $validator = $validation->make($data, $ruleLists, $messages = [], $names);
             $validator->passes();
 
             return $validator->errors()->all();
