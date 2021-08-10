@@ -1,10 +1,10 @@
 <?php
 
-namespace FunctionalCoding\Illuminate;
+namespace FunctionalCoding\Illuminate\Service;
 
-use FunctionalCoding\Illuminate\Feature\ExpandsFeatureService;
-use FunctionalCoding\Illuminate\Feature\FieldsFeatureService;
-use FunctionalCoding\Illuminate\Feature\OrderByFeatureService;
+use FunctionalCoding\Illuminate\Service\Feature\ExpandsFeatureService;
+use FunctionalCoding\Illuminate\Service\Feature\FieldsFeatureService;
+use FunctionalCoding\Illuminate\Service\Feature\OrderByFeatureService;
 use FunctionalCoding\Service;
 
 class ListService extends Service

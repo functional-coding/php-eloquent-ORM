@@ -1,6 +1,6 @@
 <?php
 
-namespace FunctionalCoding\Illuminate\Feature;
+namespace FunctionalCoding\Illuminate\Service\Feature;
 
 use FunctionalCoding\Service;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace FunctionalCoding\Illuminate;
+namespace FunctionalCoding\Illuminate\Service;
 
-use FunctionalCoding\Illuminate\Feature\ModelFeatureService;
+use FunctionalCoding\Illuminate\Service\Feature\ModelFeatureService;
 use FunctionalCoding\Service;
 
 class PivotCreateService extends Service

@@ -1,9 +1,9 @@
 <?php
 
-namespace FunctionalCoding\Illuminate\Pagination;
+namespace FunctionalCoding\Illuminate\Service\Pagination;
 
-use FunctionalCoding\Illuminate\Feature\LimitFeatureService;
-use FunctionalCoding\Illuminate\SelectQueryService;
+use FunctionalCoding\Illuminate\Service\Feature\LimitFeatureService;
+use FunctionalCoding\Illuminate\Service\SelectQueryService;
 use FunctionalCoding\Service;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
