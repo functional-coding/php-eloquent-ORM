@@ -32,27 +32,24 @@ class ServiceRunMiddleware
         }
 
         $service = Service::initService($arr);
-        $service->run();
-
+        $result = $service->run();
         $errors = $service->totalErrors();
-        $result = $service->data()->get('result');
 
-        if ($result instanceof AbstractPaginator) {
-            $path = preg_replace('/api\//', '', Request::path());
-            $path = $path.'?'.Request::getQueryString();
-            $path = preg_replace('/(\&|)page\=\d*/', '', $path);
-            $path = str_replace('?&', '?', $path);
+        if (empty($errors)) {
+            if ($result instanceof AbstractPaginator) {
+                $path = preg_replace('/api\//', '', Request::path());
+                $path = $path.'?'.Request::getQueryString();
+                $path = preg_replace('/(\&|)page\=\d*/', '', $path);
+                $path = str_replace('?&', '?', $path);
 
-            $result->setPath($path);
+                $result->setPath($path);
 
-            $data = $result->getCollection();
-            $data = $this->restify($data);
-            $data = $result->setCollection(collect($data));
-        } else {
-            $data = $this->restify($result);
-        }
-
-        if ($errors->isEmpty()) {
+                $data = $result->getCollection();
+                $data = $this->restify($data);
+                $data = $result->setCollection(collect($data));
+            } else {
+                $data = $this->restify($result);
+            }
             $response->{'Response' == Arr::last(explode('\\', get_class($response))) ? 'setContent' : 'setData'}([
                 'result' => $data,
             ]);
