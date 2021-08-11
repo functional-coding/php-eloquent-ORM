@@ -2,7 +2,6 @@
 
 namespace FunctionalCoding\Illuminate\Service\Pagination;
 
-use FunctionalCoding\Illuminate\Service\Feature\LimitFeatureService;
 use FunctionalCoding\Illuminate\Service\SelectQueryService;
 use FunctionalCoding\Service;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -27,14 +26,18 @@ class OffsetPaginationService extends Service
     public static function getArrLoaders()
     {
         return [
-            'result' => function ($limit, $page, $query, $selectQuery) {
-                $query = (clone $query)->toBase();
-                $query->limit = null;
-                $query->offset = null;
+            'count_query' => function ($query) {
+                $countQuery = (clone $query)->toBase();
+                $countQuery->limit = null;
+                $countQuery->offset = null;
 
+                return $countQuery;
+            },
+
+            'result' => function ($limit, $page, $countQuery, $selectQuery) {
                 return app()->makeWith(LengthAwarePaginator::class, [
                     'items' => $selectQuery->get(),
-                    'total' => $query->count(),
+                    'total' => $countQuery->count(),
                     'perPage' => $limit,
                     'currentPage' => $page,
                     'options' => [
@@ -70,8 +73,6 @@ class OffsetPaginationService extends Service
 
     public static function getArrTraits()
     {
-        return [
-            LimitFeatureService::class,
-        ];
+        return [];
     }
 }
