@@ -28,10 +28,16 @@ class ModelRelationMapProvider extends ServiceProvider
         $classes = new RegexIterator(new ArrayIterator(get_declared_classes()), '/App\\\Models/');
 
         foreach ($classes as $class) {
-            $segs = explode('\\', $class);
-            $key = Str::snake(array_pop($segs));
+            $matches = [];
+            $names = [];
 
-            $types[$key] = $class;
+            preg_match('/App\\\Models\\\(.*)/', $class, $matches);
+
+            foreach (explode('\\', $matches[1]) as $seg) {
+                $names[] = Str::snake($seg);
+            }
+
+            $types[implode('/', $names)] = $class;
         }
 
         Relation::morphMap($types);
