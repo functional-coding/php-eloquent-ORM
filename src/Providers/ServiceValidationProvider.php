@@ -17,10 +17,10 @@ class ServiceValidationProvider extends ServiceProvider
                     Validator::class,
                     [
                         'translator' => $tr,
-                        'customAttributes'=> $names,
+                        'customAttributes' => $names,
                         'data' => $data,
                         'rules' => $rules,
-                        'messages' =>$messages
+                        'messages' => $messages,
                     ]
                 );
             });
