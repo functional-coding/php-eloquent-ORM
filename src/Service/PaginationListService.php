@@ -1,13 +1,13 @@
 <?php
 
-namespace FunctionalCoding\Illuminate\Service;
+namespace FunctionalCoding\ORM\Eloquent\Service;
 
-use FunctionalCoding\Illuminate\Service\Feature\ExpandsFeatureService;
-use FunctionalCoding\Illuminate\Service\Feature\FieldsFeatureService;
-use FunctionalCoding\Illuminate\Service\Feature\LimitFeatureService;
-use FunctionalCoding\Illuminate\Service\Feature\OrderByFeatureService;
-use FunctionalCoding\Illuminate\Service\Pagination\CursorPaginationService;
-use FunctionalCoding\Illuminate\Service\Pagination\OffsetPaginationService;
+use FunctionalCoding\ORM\Eloquent\Service\Feature\ExpandsFeatureService;
+use FunctionalCoding\ORM\Eloquent\Service\Feature\FieldsFeatureService;
+use FunctionalCoding\ORM\Eloquent\Service\Feature\LimitFeatureService;
+use FunctionalCoding\ORM\Eloquent\Service\Feature\OrderByFeatureService;
+use FunctionalCoding\ORM\Eloquent\Service\Pagination\CursorPaginationService;
+use FunctionalCoding\ORM\Eloquent\Service\Pagination\OffsetPaginationService;
 use FunctionalCoding\Service;
 
 class PaginationListService extends Service

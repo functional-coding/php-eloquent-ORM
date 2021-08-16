@@ -23,8 +23,8 @@
     },
     "autoload": {
         "psr-4": {
-            "FunctionalCoding\\Illuminate\\": "src/",
-            "FunctionalCoding\\Illuminate\\Tests\\": "tests/"
+            "FunctionalCoding\\ORM\\Eloquent\\": "src/",
+            "FunctionalCoding\\ORM\\Eloquent\\Tests\\": "tests/"
         }
     },
     "license": "MIT"

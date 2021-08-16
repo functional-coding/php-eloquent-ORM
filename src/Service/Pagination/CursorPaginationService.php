@@ -1,6 +1,6 @@
 <?php
 
-namespace FunctionalCoding\Illuminate\Service\Pagination;
+namespace FunctionalCoding\ORM\Eloquent\Service\Pagination;
 
 use FunctionalCoding\Service;
 

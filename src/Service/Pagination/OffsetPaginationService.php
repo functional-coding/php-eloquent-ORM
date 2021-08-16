@@ -1,8 +1,8 @@
 <?php
 
-namespace FunctionalCoding\Illuminate\Service\Pagination;
+namespace FunctionalCoding\ORM\Eloquent\Service\Pagination;
 
-use FunctionalCoding\Illuminate\Service\SelectQueryService;
+use FunctionalCoding\ORM\Eloquent\Service\SelectQueryService;
 use FunctionalCoding\Service;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;

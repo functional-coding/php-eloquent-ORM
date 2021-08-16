@@ -1,8 +1,8 @@
 <?php
 
-namespace FunctionalCoding\Illuminate\Service\Feature;
+namespace FunctionalCoding\ORM\Eloquent\Service\Feature;
 
-use FunctionalCoding\Illuminate\Model;
+use FunctionalCoding\ORM\Eloquent\Model;
 use FunctionalCoding\Service;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;

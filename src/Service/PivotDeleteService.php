@@ -1,8 +1,8 @@
 <?php
 
-namespace FunctionalCoding\Illuminate\Service;
+namespace FunctionalCoding\ORM\Eloquent\Service;
 
-use FunctionalCoding\Illuminate\Service\Feature\ModelFeatureService;
+use FunctionalCoding\ORM\Eloquent\Service\Feature\ModelFeatureService;
 use FunctionalCoding\Service;
 
 class PivotDeleteService extends Service

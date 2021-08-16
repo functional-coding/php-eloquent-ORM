@@ -1,6 +1,6 @@
 <?php
 
-namespace FunctionalCoding\Illuminate\Service;
+namespace FunctionalCoding\ORM\Eloquent\Service;
 
 use FunctionalCoding\Service;
 
