@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdf5a2dfd269eb88b9a50c0fd2c84532",
+    "content-hash": "f84dbad2e4b907f438ba2615967a8a68",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -255,19 +255,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/functional-coding/php.git",
-                "reference": "d7f44926a5af853acdcc70a5daee345d62f803a1"
+                "reference": "1fb8d5c7c155b88e5421812764cd5ab4ddfe4bc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/functional-coding/php/zipball/d7f44926a5af853acdcc70a5daee345d62f803a1",
-                "reference": "d7f44926a5af853acdcc70a5daee345d62f803a1",
+                "url": "https://api.github.com/repos/functional-coding/php/zipball/1fb8d5c7c155b88e5421812764cd5ab4ddfe4bc2",
+                "reference": "1fb8d5c7c155b88e5421812764cd5ab4ddfe4bc2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "^3.0",
+                "friendsofphp/php-cs-fixer": "^3.0",
                 "phpunit/phpunit": "^9.5"
             },
             "default-branch": true,
@@ -292,7 +292,7 @@
                 "issues": "https://github.com/functional-coding/php/issues",
                 "source": "https://github.com/functional-coding/php/tree/master"
             },
-            "time": "2021-08-11T00:17:07+00:00"
+            "time": "2021-08-17T02:58:45+00:00"
         },
         {
             "name": "illuminate/collections",
