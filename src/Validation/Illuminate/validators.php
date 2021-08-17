@@ -2,7 +2,7 @@
 
 return [
     'not_null' => function ($attribute, $value, $parameters, $validator) {
-        return !$validator->validateNull($attribute, $value);
+        return !$this['null']($attribute, $value, [], $validator);
     },
 
     'not_null_if' => function ($attribute, $value, $parameters, $validator) {
@@ -14,7 +14,7 @@ return [
             return true;
         }
 
-        return $validator->validateNotNull($attribute, $value);
+        return $this['not_null']($attribute, $value, [], $validator);
     },
 
     'null' => function ($attribute, $value, $parameters, $validator) {
@@ -34,6 +34,6 @@ return [
             return true;
         }
 
-        return $validator->validateNull($attribute, $value);
+        return $this['null']($attribute, $value, [], $validator);
     },
 ];
