@@ -12,7 +12,7 @@ class ExpandsFeatureService extends Service
     public static function getArrBindNames()
     {
         return [
-            'available_expands' => 'options for {{expands}}',
+            'available_expands' => 'available options for {{expands}}',
         ];
     }
 

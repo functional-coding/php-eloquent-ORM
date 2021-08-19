@@ -9,7 +9,7 @@ class FieldsFeatureService extends Service
     public static function getArrBindNames()
     {
         return [
-            'available_fields' => 'options for {{fields}}',
+            'available_fields' => 'available options for {{fields}}',
         ];
     }
 

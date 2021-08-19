@@ -9,7 +9,7 @@ class OrderByFeatureService extends Service
     public static function getArrBindNames()
     {
         return [
-            'available_order_by' => 'options for {{order_by}}',
+            'available_order_by' => 'available options for {{order_by}}',
         ];
     }
 

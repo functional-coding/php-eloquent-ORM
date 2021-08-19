@@ -9,7 +9,7 @@ class GroupByFeatureService extends Service
     public static function getArrBindNames()
     {
         return [
-            'available_group_by' => 'options for {{group_by}}',
+            'available_group_by' => 'available options for {{group_by}}',
         ];
     }
 
