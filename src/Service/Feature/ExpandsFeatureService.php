@@ -55,7 +55,7 @@ class ExpandsFeatureService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'expands' => ['string', 'several_in:{{available_expands}}'],
+            'expands' => ['string', 'some_of_array:{{available_expands}}'],
         ];
     }
 

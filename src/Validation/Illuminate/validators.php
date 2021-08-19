@@ -12,4 +12,13 @@ return [
 
         return false;
     },
+
+    'some_of_array' => function ($attribute, $value, $parameters, $validator) {
+        $validator->requireParameterCount(1, $parameters, 'some_of_array');
+
+        $value = preg_split('/\s*,\s*/', $value);
+        $options = $this->getValue($parameters[0]);
+
+        return count($value) == count(array_intersect($value, $options));
+    },
 ];

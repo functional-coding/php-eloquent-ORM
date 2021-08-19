@@ -43,7 +43,7 @@ class FieldsFeatureService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'fields' => ['string', 'several_in:{{available_fields}}'],
+            'fields' => ['string', 'some_of_array:{{available_fields}}'],
         ];
     }
 

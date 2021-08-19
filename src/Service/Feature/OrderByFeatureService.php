@@ -74,7 +74,7 @@ class OrderByFeatureService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'order_by' => ['string', 'in_array:{{available_order_by}}.*'],
+            'order_by' => ['string', 'some_of_array:{{available_order_by}}'],
         ];
     }
 
