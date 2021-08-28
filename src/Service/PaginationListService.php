@@ -29,6 +29,14 @@ class PaginationListService extends Service
                 throw new \Exception();
             },
 
+            'order_by' => function ($modelClass) {
+                if (null == $modelClass::CREATED_AT) {
+                    return (new $modelClass())->getKeyName().' desc';
+                }
+
+                return $modelClass::CREATED_AT.' desc';
+            },
+
             'result' => function ($cursor = '', $limit, $orderByArray, $page = '', $query) {
                 if ('' !== $page) {
                     return [OffsetPaginationService::class, [

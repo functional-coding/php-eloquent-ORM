@@ -35,14 +35,6 @@ class OrderByFeatureService extends Service
                 return [$modelClass::CREATED_AT.' desc', $modelClass::CREATED_AT.' asc'];
             },
 
-            'order_by' => function ($modelClass) {
-                if (null == $modelClass::CREATED_AT) {
-                    return (new $modelClass())->getKeyName().' desc';
-                }
-
-                return $modelClass::CREATED_AT.' desc';
-            },
-
             'order_by_array' => function ($modelClass, $orderBy) {
                 $model = new $modelClass();
                 $orderBy = preg_replace('/\s+/', ' ', $orderBy);
