@@ -17,7 +17,10 @@ class GroupByFeatureService extends Service
     {
         return [
             'query.group_by' => function ($groupBy, $query) {
-                foreach ($groupBy as $key) {
+                $groupBy = preg_replace('/\s*,\s*/', ',', $groupBy);
+                $arr = \explode(',', $groupBy);
+
+                foreach ($arr as $key) {
                     $query->groupBy($key);
                 }
             },
@@ -41,7 +44,7 @@ class GroupByFeatureService extends Service
     public static function getArrRuleLists()
     {
         return [
-            'group_by' => ['string', 'in_array:{{available_group_by}}.*'],
+            'group_by' => ['string', 'some_of_array:{{available_group_by}}'],
         ];
     }
 
