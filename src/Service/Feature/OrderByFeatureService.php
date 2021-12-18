@@ -6,14 +6,14 @@ use FunctionalCoding\Service;
 
 class OrderByFeatureService extends Service
 {
-    public static function getArrBindNames()
+    public static function getBindNames()
     {
         return [
             'available_order_by' => 'available options for {{order_by}}',
         ];
     }
 
-    public static function getArrCallbacks()
+    public static function getCallbacks()
     {
         return [
             'query.order_by_array' => function ($orderByArray, $query) {
@@ -24,7 +24,7 @@ class OrderByFeatureService extends Service
         ];
     }
 
-    public static function getArrLoaders()
+    public static function getLoaders()
     {
         return [
             'available_order_by' => function ($modelClass) {
@@ -58,19 +58,19 @@ class OrderByFeatureService extends Service
         ];
     }
 
-    public static function getArrPromiseLists()
+    public static function getPromiseLists()
     {
         return [];
     }
 
-    public static function getArrRuleLists()
+    public static function getRuleLists()
     {
         return [
             'order_by' => ['string', 'some_of_array:{{available_order_by}}'],
         ];
     }
 
-    public static function getArrTraits()
+    public static function getTraits()
     {
         return [
             QueryFeatureService::class,

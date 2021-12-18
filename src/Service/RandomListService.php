@@ -9,12 +9,12 @@ use FunctionalCoding\Service;
 
 class RandomListService extends Service
 {
-    public static function getArrBindNames()
+    public static function getBindNames()
     {
         return [];
     }
 
-    public static function getArrCallbacks()
+    public static function getCallbacks()
     {
         return [
             'query.order_by' => function ($query) {
@@ -23,7 +23,7 @@ class RandomListService extends Service
         ];
     }
 
-    public static function getArrLoaders()
+    public static function getLoaders()
     {
         return [
             'result' => function ($selectQuery) {
@@ -38,17 +38,17 @@ class RandomListService extends Service
         ];
     }
 
-    public static function getArrPromiseLists()
+    public static function getPromiseLists()
     {
         return [];
     }
 
-    public static function getArrRuleLists()
+    public static function getRuleLists()
     {
         return [];
     }
 
-    public static function getArrTraits()
+    public static function getTraits()
     {
         return [
             ExpandsFeatureService::class,

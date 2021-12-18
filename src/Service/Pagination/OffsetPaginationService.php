@@ -9,12 +9,12 @@ use Illuminate\Pagination\Paginator;
 
 class OffsetPaginationService extends Service
 {
-    public static function getArrBindNames()
+    public static function getBindNames()
     {
         return [];
     }
 
-    public static function getArrCallbacks()
+    public static function getCallbacks()
     {
         return [
             'query.skip' => function ($query, $skip) {
@@ -23,7 +23,7 @@ class OffsetPaginationService extends Service
         ];
     }
 
-    public static function getArrLoaders()
+    public static function getLoaders()
     {
         return [
             'count_query' => function ($query) {
@@ -59,19 +59,19 @@ class OffsetPaginationService extends Service
         ];
     }
 
-    public static function getArrPromiseLists()
+    public static function getPromiseLists()
     {
         return [];
     }
 
-    public static function getArrRuleLists()
+    public static function getRuleLists()
     {
         return [
             'page' => ['required', 'integer', 'min:1'],
         ];
     }
 
-    public static function getArrTraits()
+    public static function getTraits()
     {
         return [];
     }

@@ -6,14 +6,14 @@ use FunctionalCoding\Service;
 
 class FieldsFeatureService extends Service
 {
-    public static function getArrBindNames()
+    public static function getBindNames()
     {
         return [
             'available_fields' => 'available options for {{fields}}',
         ];
     }
 
-    public static function getArrCallbacks()
+    public static function getCallbacks()
     {
         return [
             'query.fields' => function ($availableFields, $fields = '', $query) {
@@ -24,7 +24,7 @@ class FieldsFeatureService extends Service
         ];
     }
 
-    public static function getArrLoaders()
+    public static function getLoaders()
     {
         return [
             'available_fields' => function ($modelClass) {
@@ -35,19 +35,19 @@ class FieldsFeatureService extends Service
         ];
     }
 
-    public static function getArrPromiseLists()
+    public static function getPromiseLists()
     {
         return [];
     }
 
-    public static function getArrRuleLists()
+    public static function getRuleLists()
     {
         return [
             'fields' => ['string', 'some_of_array:{{available_fields}}'],
         ];
     }
 
-    public static function getArrTraits()
+    public static function getTraits()
     {
         return [
             QueryFeatureService::class,

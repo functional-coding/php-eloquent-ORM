@@ -6,14 +6,14 @@ use FunctionalCoding\Service;
 
 class GroupByFeatureService extends Service
 {
-    public static function getArrBindNames()
+    public static function getBindNames()
     {
         return [
             'available_group_by' => 'available options for {{group_by}}',
         ];
     }
 
-    public static function getArrCallbacks()
+    public static function getCallbacks()
     {
         return [
             'query.group_by' => function ($groupBy, $query) {
@@ -27,7 +27,7 @@ class GroupByFeatureService extends Service
         ];
     }
 
-    public static function getArrLoaders()
+    public static function getLoaders()
     {
         return [
             'available_group_by' => function () {
@@ -36,19 +36,19 @@ class GroupByFeatureService extends Service
         ];
     }
 
-    public static function getArrPromiseLists()
+    public static function getPromiseLists()
     {
         return [];
     }
 
-    public static function getArrRuleLists()
+    public static function getRuleLists()
     {
         return [
             'group_by' => ['string', 'some_of_array:{{available_group_by}}'],
         ];
     }
 
-    public static function getArrTraits()
+    public static function getTraits()
     {
         return [
             QueryFeatureService::class,

@@ -12,17 +12,17 @@ use FunctionalCoding\Service;
 
 class PaginationListService extends Service
 {
-    public static function getArrBindNames()
+    public static function getBindNames()
     {
         return [];
     }
 
-    public static function getArrCallbacks()
+    public static function getCallbacks()
     {
         return [];
     }
 
-    public static function getArrLoaders()
+    public static function getLoaders()
     {
         return [
             'cursor' => function () {
@@ -59,19 +59,19 @@ class PaginationListService extends Service
         ];
     }
 
-    public static function getArrPromiseLists()
+    public static function getPromiseLists()
     {
         return [];
     }
 
-    public static function getArrRuleLists()
+    public static function getRuleLists()
     {
         return [
             'cursor_id' => ['integer'],
         ];
     }
 
-    public static function getArrTraits()
+    public static function getTraits()
     {
         return [
             ExpandsFeatureService::class,

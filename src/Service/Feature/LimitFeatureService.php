@@ -6,12 +6,12 @@ use FunctionalCoding\Service;
 
 class LimitFeatureService extends Service
 {
-    public static function getArrBindNames()
+    public static function getBindNames()
     {
         return [];
     }
 
-    public static function getArrCallbacks()
+    public static function getCallbacks()
     {
         return [
             'query.limit' => function ($limit, $query) {
@@ -20,7 +20,7 @@ class LimitFeatureService extends Service
         ];
     }
 
-    public static function getArrLoaders()
+    public static function getLoaders()
     {
         return [
             'limit' => function () {
@@ -29,19 +29,19 @@ class LimitFeatureService extends Service
         ];
     }
 
-    public static function getArrPromiseLists()
+    public static function getPromiseLists()
     {
         return [];
     }
 
-    public static function getArrRuleLists()
+    public static function getRuleLists()
     {
         return [
             'limit' => ['required', 'integer', 'max:120', 'min:1'],
         ];
     }
 
-    public static function getArrTraits()
+    public static function getTraits()
     {
         return [
             QueryFeatureService::class,

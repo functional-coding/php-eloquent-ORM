@@ -7,12 +7,12 @@ use FunctionalCoding\Service;
 
 class PivotCreateService extends Service
 {
-    public static function getArrBindNames()
+    public static function getBindNames()
     {
         return [];
     }
 
-    public static function getArrCallbacks()
+    public static function getCallbacks()
     {
         return [
             'model.related' => function ($model, $related, $relatedMethod) {
@@ -21,7 +21,7 @@ class PivotCreateService extends Service
         ];
     }
 
-    public static function getArrLoaders()
+    public static function getLoaders()
     {
         return [
             'related' => function () {
@@ -38,12 +38,12 @@ class PivotCreateService extends Service
         ];
     }
 
-    public static function getArrPromiseLists()
+    public static function getPromiseLists()
     {
         return [];
     }
 
-    public static function getArrRuleLists()
+    public static function getRuleLists()
     {
         return [
             'related' => ['not_null'],
@@ -52,7 +52,7 @@ class PivotCreateService extends Service
         ];
     }
 
-    public static function getArrTraits()
+    public static function getTraits()
     {
         return [
             ModelFeatureService::class,
