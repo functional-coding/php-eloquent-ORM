@@ -251,12 +251,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/functional-coding/php.git",
-                "reference": "dd4ac4cb2989a48421d002764fd5a8a0c84598ed"
+                "reference": "aaab86281beedfb50ef792e582bb4f431b32a181"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/functional-coding/php/zipball/dd4ac4cb2989a48421d002764fd5a8a0c84598ed",
-                "reference": "dd4ac4cb2989a48421d002764fd5a8a0c84598ed",
+                "url": "https://api.github.com/repos/functional-coding/php/zipball/aaab86281beedfb50ef792e582bb4f431b32a181",
+                "reference": "aaab86281beedfb50ef792e582bb4f431b32a181",
                 "shasum": ""
             },
             "require": {
@@ -288,7 +288,7 @@
                 "issues": "https://github.com/functional-coding/php/issues",
                 "source": "https://github.com/functional-coding/php/tree/master"
             },
-            "time": "2021-12-17T16:29:34+00:00"
+            "time": "2022-01-02T09:54:24+00:00"
         },
         {
             "name": "illuminate/collections",
