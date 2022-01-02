@@ -19,6 +19,10 @@ class FieldsFeatureService extends Service
             'query.fields' => function ($availableFields, $fields = '', $query) {
                 $fields = $fields ? preg_split('/\s*,\s*/', $fields) : $availableFields;
 
+                foreach ($fields as $i => $field) {
+                    $fields[$i] = $query->getModel()->getTable().'.'.$field;
+                }
+
                 $query->select($fields);
             },
         ];
