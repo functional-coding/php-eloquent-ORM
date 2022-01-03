@@ -30,7 +30,7 @@ class FieldsFeatureService extends Service
                 $query->select($fields);
             },
 
-            'query.fields:after_commit' => function ($availableFields, $fields = '', $modelClass, $result) {
+            'result.fields:after_commit' => function ($availableFields, $fields = '', $modelClass, $result) {
                 $fields = $fields ? preg_split('/\s*,\s*/', $fields) : $availableFields;
                 $model = new $modelClass;
                 $fields = array_intersect($fields, array_keys($model->toArray()));
