@@ -2,6 +2,7 @@
 
 namespace FunctionalCoding\ORM\Eloquent\Service\Pagination;
 
+use FunctionalCoding\ORM\Eloquent\Service\Feature\OptimizeQueryBuilderFeatureService;
 use FunctionalCoding\Service;
 
 class CursorPaginationService extends Service
@@ -19,7 +20,7 @@ class CursorPaginationService extends Service
     public static function getLoaders()
     {
         return [
-            'result' => function ($cursor = '', $limit, $orderByArray, $query) {
+            'result' => function ($cursor = '', $limit, $optimizeQueryBuilder, $orderByArray, $query) {
                 $wheres = [];
                 $result = [];
 
@@ -48,7 +49,7 @@ class CursorPaginationService extends Service
 
                     array_pop($wheres);
 
-                    $list = $newQuery->get();
+                    $list = $optimizeQueryBuilder($newQuery)->get();
                     $limit = $limit - count($list);
                     $result = array_merge($result, $list->all());
                 } while (0 != $limit && 0 != count($wheres));
@@ -70,6 +71,8 @@ class CursorPaginationService extends Service
 
     public static function getTraits()
     {
-        return [];
+        return [
+            OptimizeQueryBuilderFeatureService::class,
+        ];
     }
 }
