@@ -56,11 +56,11 @@ class FieldsFeatureService extends Service
             'available_fields' => function ($modelClass) {
                 $model = new $modelClass();
 
-                return array_merge(
+                return array_diff(array_merge(
                     array_keys($model->toArray()), // appends
                     $model->getFillable(),
                     $model->getGuarded(),
-                );
+                ), $model->getHidden());
             },
         ];
     }
