@@ -6,7 +6,7 @@ use PhpCsFixer\Finder;
 return (new Config())
     ->setRules([
         '@PhpCsFixer' => true,
-        'ordered_imports' => [
+        'ordered_class_elements' => [
             'sort_algorithm' => 'alpha',
         ],
     ])
