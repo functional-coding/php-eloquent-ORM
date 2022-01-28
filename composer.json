@@ -8,10 +8,7 @@
     ],
     "require": {
         "functional-coding/php": "dev-master",
-        "illuminate/container": "*",
-        "illuminate/contracts": "*",
         "illuminate/database": "*",
-        "illuminate/http": "*",
         "illuminate/pagination": "*",
         "illuminate/support": "*",
         "illuminate/validation": "*",
