@@ -14,7 +14,7 @@
         }
     },
     "require": {
-        "functional-coding/php": "dev-master",
+        "functional-coding/base": "dev-master",
         "illuminate/database": "*",
         "illuminate/pagination": "*",
         "illuminate/support": "*",

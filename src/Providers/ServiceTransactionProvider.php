@@ -8,9 +8,9 @@ use Illuminate\Support\ServiceProvider;
 
 class ServiceTransactionProvider extends ServiceProvider
 {
-    public function handle($request, $next)
+    public function boot()
     {
-        Service::addOnStartCallback(function () {
+        Service::addOnBeforeRunCallback(function () {
             DB::beginTransaction();
         });
         Service::addOnSuccessCallback(function () {

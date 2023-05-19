@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "934b3f7b8eb7fb6b646fc5d92eb54b99",
+    "content-hash": "fb1af056098de2cc0ee987a60f7589be",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -242,17 +242,17 @@
             "time": "2020-12-29T14:50:06+00:00"
         },
         {
-            "name": "functional-coding/php",
+            "name": "functional-coding/base",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/functional-coding/php.git",
-                "reference": "c06ddbbb1d85ec79ed7a050b7b9711943cc95549"
+                "reference": "92d7fea668396a3458d1107262079b3f097f388e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/functional-coding/php/zipball/c06ddbbb1d85ec79ed7a050b7b9711943cc95549",
-                "reference": "c06ddbbb1d85ec79ed7a050b7b9711943cc95549",
+                "url": "https://api.github.com/repos/functional-coding/php/zipball/92d7fea668396a3458d1107262079b3f097f388e",
+                "reference": "92d7fea668396a3458d1107262079b3f097f388e",
                 "shasum": ""
             },
             "require": {
@@ -275,11 +275,17 @@
             "license": [
                 "MIT"
             ],
+            "authors": [
+                {
+                    "name": "jongwoo Yoo",
+                    "email": "dbwhddn10@gmail.com"
+                }
+            ],
             "support": {
                 "issues": "https://github.com/functional-coding/php/issues",
                 "source": "https://github.com/functional-coding/php/tree/master"
             },
-            "time": "2023-05-18T23:43:27+00:00"
+            "time": "2023-06-07T09:33:27+00:00"
         },
         {
             "name": "illuminate/collections",
@@ -3020,16 +3026,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.15.4",
+            "version": "v4.15.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290"
+                "reference": "11e2663a5bc9db5d714eedb4277ee300403b4a9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
-                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/11e2663a5bc9db5d714eedb4277ee300403b4a9e",
+                "reference": "11e2663a5bc9db5d714eedb4277ee300403b4a9e",
                 "shasum": ""
             },
             "require": {
@@ -3070,9 +3076,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.4"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.5"
             },
-            "time": "2023-03-05T19:49:14+00:00"
+            "time": "2023-05-19T20:20:00+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -5273,7 +5279,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "functional-coding/php": 20
+        "functional-coding/base": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

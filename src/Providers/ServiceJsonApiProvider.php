@@ -3,17 +3,17 @@
 namespace FunctionalCoding\ORM\Eloquent\Providers;
 
 use FunctionalCoding\Service;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Support\Collection;
+use Illuminate\Support\ServiceProvider;
 
 class ServiceJsonApiProvider extends ServiceProvider
 {
-    public function handle($request, $next)
+    public function boot()
     {
-        function restify($result) {
+        $restify = function ($result) use (&$restify) {
             if ($result instanceof AbstractPaginator) {
                 $result = $result->getCollection();
             }
@@ -33,7 +33,7 @@ class ServiceJsonApiProvider extends ServiceProvider
                 $value['_relations'] = [];
 
                 foreach ($item->getRelations() as $key => $relation) {
-                    $value['_relations'][$key] = restify($relation);
+                    $value['_relations'][$key] = $restify($relation);
                 }
 
                 $return[] = $value;
@@ -41,14 +41,16 @@ class ServiceJsonApiProvider extends ServiceProvider
 
             return $isModel ? $return[0] : $return;
         };
-        Service::setResponseResultResolver(function ($result) {
-            return restify($result);
+
+        Service::setResponseResultResolver(function ($result) use ($restify) {
+            return $restify($result);
         });
         Service::setResponseErrorsResolver(function ($errors) {
             $msgs = [];
             \array_walk_recursive($errors, function ($value) use (&$msgs) {
                 $msgs[] = $value;
             });
+
             return $msgs;
         });
     }
