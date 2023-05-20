@@ -21,12 +21,12 @@ class ServiceParameterMiddleware
         $names = Arr::get($content, 2, []);
         $ruleLists = $class::getAllRuleLists()->getArrayCopy();
 
+        $data['auth_token'] = $request->bearerToken() ?: '';
+        $names['auth_token'] = 'header[authorization]';
+
         if (!isset($data['token']) && $request->offsetExists('token')) {
             $data['token'] = $request->offsetGet('token');
             $names['token'] = '[token]';
-        } elseif (!isset($data['token'])) {
-            $data['token'] = $request->bearerToken() ?: '';
-            $names['token'] = 'header[authorization]';
         }
 
         if (array_key_exists('expands', $ruleLists) || $request->offsetExists('expands')) {
@@ -52,6 +52,11 @@ class ServiceParameterMiddleware
         if (array_key_exists('order_by', $ruleLists) || $request->offsetExists('order_by')) {
             $data['order_by'] = Arr::get($request->all(), 'order_by', '');
             $names['order_by'] = '[order_by]';
+        }
+
+        if (array_key_exists('group_by', $ruleLists) || $request->offsetExists('group_by')) {
+            $data['group_by'] = Arr::get($request->all(), 'group_by', '');
+            $names['group_by'] = '[group_by]';
         }
 
         if (array_key_exists('cursor_id', $ruleLists) || $request->offsetExists('cursor_id')) {
