@@ -37,7 +37,7 @@ class PaginationListService extends Service
                 return $modelClass::CREATED_AT.' desc';
             },
 
-            'result' => function ($cursor = '', $limit, $orderByArray, $page = '', $query) {
+            'result' => function ($limit, $orderByArray, $query, $cursor = '', $page = '') {
                 if ('' !== $page) {
                     return [OffsetPaginationService::class, [
                         'limit' => $limit,

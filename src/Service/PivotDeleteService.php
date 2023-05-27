@@ -15,7 +15,7 @@ class PivotDeleteService extends Service
     public static function getCallbacks()
     {
         return [
-            'model.related' => function ($model, $related = '', $relatedMethod) {
+            'model.related' => function ($model, $relatedMethod, $related = '') {
                 $relObj = $model->{$relatedMethod}();
 
                 if ($related) {
