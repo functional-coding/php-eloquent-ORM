@@ -4,6 +4,7 @@ namespace FunctionalCoding\ORM\Eloquent\Service;
 
 use FunctionalCoding\ORM\Eloquent\Service\Feature\ExpandsFeatureService;
 use FunctionalCoding\ORM\Eloquent\Service\Feature\FieldsFeatureService;
+use FunctionalCoding\ORM\Eloquent\Service\Feature\GroupByFeatureService;
 use FunctionalCoding\ORM\Eloquent\Service\Feature\OrderByFeatureService;
 use FunctionalCoding\Service;
 
@@ -44,6 +45,7 @@ class ListService extends Service
             ExpandsFeatureService::class,
             FieldsFeatureService::class,
             OrderByFeatureService::class,
+            GroupByFeatureService::class,
         ];
     }
 }

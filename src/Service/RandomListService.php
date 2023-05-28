@@ -4,6 +4,7 @@ namespace FunctionalCoding\ORM\Eloquent\Service;
 
 use FunctionalCoding\ORM\Eloquent\Service\Feature\ExpandsFeatureService;
 use FunctionalCoding\ORM\Eloquent\Service\Feature\FieldsFeatureService;
+use FunctionalCoding\ORM\Eloquent\Service\Feature\GroupByFeatureService;
 use FunctionalCoding\ORM\Eloquent\Service\Feature\LimitFeatureService;
 use FunctionalCoding\ORM\Eloquent\Service\Feature\OptimizeQueryBuilderFeatureService;
 use FunctionalCoding\Service;
@@ -51,6 +52,7 @@ class RandomListService extends Service
             ExpandsFeatureService::class,
             FieldsFeatureService::class,
             LimitFeatureService::class,
+            GroupByFeatureService::class,
         ];
     }
 }

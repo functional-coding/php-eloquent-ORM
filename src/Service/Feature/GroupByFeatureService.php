@@ -31,7 +31,7 @@ class GroupByFeatureService extends Service
     {
         return [
             'available_group_by' => function () {
-                throw new \Exception();
+                return [];
             },
         ];
     }

@@ -4,6 +4,7 @@ namespace FunctionalCoding\ORM\Eloquent\Service;
 
 use FunctionalCoding\ORM\Eloquent\Service\Feature\ExpandsFeatureService;
 use FunctionalCoding\ORM\Eloquent\Service\Feature\FieldsFeatureService;
+use FunctionalCoding\ORM\Eloquent\Service\Feature\GroupByFeatureService;
 use FunctionalCoding\ORM\Eloquent\Service\Feature\LimitFeatureService;
 use FunctionalCoding\ORM\Eloquent\Service\Feature\OrderByFeatureService;
 use FunctionalCoding\ORM\Eloquent\Service\Pagination\CursorPaginationService;
@@ -78,6 +79,7 @@ class PaginationListService extends Service
             FieldsFeatureService::class,
             LimitFeatureService::class,
             OrderByFeatureService::class,
+            GroupByFeatureService::class,
         ];
     }
 }
