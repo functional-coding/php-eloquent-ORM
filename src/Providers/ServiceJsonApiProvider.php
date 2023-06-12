@@ -5,7 +5,7 @@ namespace FunctionalCoding\ORM\Eloquent\Providers;
 use FunctionalCoding\Service;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,17 +13,14 @@ class ServiceJsonApiProvider extends ServiceProvider
 {
     public function boot()
     {
-        $restify = function ($result) use (&$restify) {
-            if ($result instanceof AbstractPaginator) {
-                $result = $result->getCollection();
-            }
-            if (!is_a($result, Model::class) && !is_a($result, Collection::class)) {
-                return $result;
+        $restify = function ($data) use (&$restify) {
+            if (!is_a($data, Model::class) && !is_a($data, Collection::class)) {
+                return $data;
             }
 
-            $isModel = $result instanceof Model ? true : false;
+            $isModel = $data instanceof Model ? true : false;
             $return = [];
-            $items = $isModel ? [$result] : $result->all();
+            $items = $isModel ? [$data] : $data->all();
 
             foreach ($items as $i => $item) {
                 $type = array_flip(Relation::morphMap())[get_class($item)];
@@ -42,8 +39,27 @@ class ServiceJsonApiProvider extends ServiceProvider
             return $isModel ? $return[0] : $return;
         };
 
+        Service::setResponseResolver(function ($result, $errors) {
+            if ($errors) {
+                return ['errors' => $errors];
+            }
+
+            return $result;
+        });
         Service::setResponseResultResolver(function ($result) use ($restify) {
-            return $restify($result);
+            if ($result instanceof LengthAwarePaginator) {
+                return [
+                    'result' => $restify($result->getCollection()),
+                    'current_page' => $result->currentPage(),
+                    'per_page' => $result->perPage(),
+                    'last_page' => $result->lastPage(),
+                    'total' => $result->total(),
+                ];
+            }
+
+            return [
+                'result' => $restify($result),
+            ];
         });
         Service::setResponseErrorsResolver(function ($errors) {
             $msgs = [];
