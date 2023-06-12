@@ -26,7 +26,7 @@ class OffsetPaginationService extends Service
     public static function getLoaders()
     {
         return [
-            'result' => function ($countQuery, $limit, $optimizeQueryBuilder, $page, $query) {
+            'result' => function ($limit, $optimizeQueryBuilder, $page, $query) {
                 $countQuery = (clone $query)->toBase();
                 $countQuery->limit = null;
                 $countQuery->offset = null;
