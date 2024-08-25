@@ -19,54 +19,40 @@ class ServiceParameterMiddleware
         $class = $content[0];
         $data = Arr::get($content, 1, []);
         $names = Arr::get($content, 2, []);
-        $ruleLists = $class::getAllRuleLists()->getArrayCopy();
+        $ruleListKeys = [];
+
+        foreach (array_keys($class::getAllRuleLists()) as $v) {
+            foreach (array_keys($class::getAllRuleLists()[$v]) as $k) {
+                $ruleListKeys[] = $k;
+            }
+        }
 
         $data['auth_token'] = $request->bearerToken() ?: '';
         $names['auth_token'] = 'header[authorization]';
-
-        if (!isset($data['token']) && $request->offsetExists('token')) {
-            $data['token'] = $request->offsetGet('token');
-            $names['token'] = '[token]';
-        }
-
-        if (array_key_exists('expands', $ruleLists) || $request->offsetExists('expands')) {
-            $data['expands'] = Arr::get($request->all(), 'expands', '');
-            $names['expands'] = '[expands]';
-        }
-
-        if (array_key_exists('fields', $ruleLists) || $request->offsetExists('fields')) {
-            $data['fields'] = Arr::get($request->all(), 'fields', '');
-            $names['fields'] = '[fields]';
-        }
-
-        if (array_key_exists('limit', $ruleLists) || $request->offsetExists('limit')) {
-            $data['limit'] = Arr::get($request->all(), 'limit', '');
-            $names['limit'] = '[limit]';
-        }
 
         if ($request->route('id')) {
             $data['id'] = $request->route('id') ? $request->route('id') : '';
             $names['id'] = $request->route('id') ? $request->route('id') : '';
         }
 
-        if (array_key_exists('order_by', $ruleLists) || $request->offsetExists('order_by')) {
-            $data['order_by'] = Arr::get($request->all(), 'order_by', '');
-            $names['order_by'] = '[order_by]';
+        if (!isset($data['token']) && !isset($names['token']) && $request->offsetExists('token')) {
+            $data['token'] = $request->offsetGet('token');
+            $names['token'] = '[token]';
         }
 
-        if (array_key_exists('group_by', $ruleLists) || $request->offsetExists('group_by')) {
-            $data['group_by'] = Arr::get($request->all(), 'group_by', '');
-            $names['group_by'] = '[group_by]';
-        }
-
-        if (array_key_exists('cursor_id', $ruleLists) || $request->offsetExists('cursor_id')) {
-            $data['cursor_id'] = Arr::get($request->all(), 'cursor_id', '');
-            $names['cursor_id'] = '[cursor_id]';
-        }
-
-        if (array_key_exists('page', $ruleLists) || $request->offsetExists('page')) {
-            $data['page'] = Arr::get($request->all(), 'page', '');
-            $names['page'] = '[page]';
+        foreach ([
+            'expands',
+            'fields',
+            'limit',
+            'order_by',
+            'group_by',
+            'cursor_id',
+            'page'
+        ] as $key) {
+            if (in_array($key, $ruleListKeys) || $request->offsetExists($key)) {
+                $data[$key] = Arr::get($request->all(), $key, '');
+                $names[$key] = '['.$key.']';
+            }
         }
 
         $response->{'JsonResponse' == Arr::last(explode('\\', get_class($response))) ? 'setData' : 'setContent'}([$class, $data, $names]);

@@ -17,7 +17,7 @@ class ServiceRunMiddleware
         }
 
         $service = Service::initService($content);
-        $service->runWithLifeCycleCallbacks();
+        $service->run();
         $content = $service->getResponseBody();
 
         $response->{'JsonResponse' == Arr::last(explode('\\', get_class($response))) ? 'setData' : 'setContent'}($content);

@@ -41,33 +41,29 @@ class ServiceJsonApiProvider extends ServiceProvider
 
         Service::setResponseResolver(function ($result, $errors) {
             if ($errors) {
-                return ['errors' => $errors];
+                $msgs = [];
+                \array_walk_recursive($errors, function ($value) use (&$msgs) {
+                    $msgs[] = $value;
+                });
+
+                return ['errors' => $msgs];
             }
 
-            return $result;
-        });
-        Service::setResponseResultResolver(function ($result) use ($restify) {
             if ($result instanceof LengthAwarePaginator) {
                 return [
-                    'result' => $restify($result->getCollection()),
-                    'current_page' => $result->currentPage(),
-                    'per_page' => $result->perPage(),
-                    'last_page' => $result->lastPage(),
-                    'total' => $result->total(),
+                    'result' => [
+                        'data' => $restify($result->getCollection()),
+                        'current_page' => $result->currentPage(),
+                        'per_page' => $result->perPage(),
+                        'last_page' => $result->lastPage(),
+                        'total' => $result->total(),
+                    ]
                 ];
             }
 
             return [
                 'result' => $restify($result),
             ];
-        });
-        Service::setResponseErrorsResolver(function ($errors) {
-            $msgs = [];
-            \array_walk_recursive($errors, function ($value) use (&$msgs) {
-                $msgs[] = $value;
-            });
-
-            return $msgs;
         });
     }
 }

@@ -1,12 +1,6 @@
 {
     "name": "functional-coding/eloquent-orm",
-    "license": "MIT",
-    "authors": [
-        {
-            "email": "dbwhddn10@gmail.com",
-            "name": "jongwoo Yoo"
-        }
-    ],
+    "description": "eloquent ORM service using `functional-coding/base`",
     "autoload": {
         "psr-4": {
             "FunctionalCoding\\ORM\\Eloquent\\": "src/",
@@ -15,9 +9,9 @@
     },
     "require": {
         "functional-coding/base": "dev-master",
-        "illuminate/database": "*",
-        "illuminate/pagination": "*",
-        "illuminate/support": "*",
+        "illuminate/database": "^8.0",
+        "illuminate/pagination": "^8.0",
+        "illuminate/support": "^8.0",
         "php": ">=7.4"
     },
     "require-dev": {
