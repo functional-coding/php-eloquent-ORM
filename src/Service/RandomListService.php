@@ -19,7 +19,7 @@ class RandomListService extends Service
     public static function getCallbacks()
     {
         return [
-            'query.order_by' => function ($query) {
+            'query#order_by' => function ($query) {
                 $query->orderByRaw('RAND()');
             },
         ];

@@ -15,7 +15,7 @@ class UpdatingService extends Service
     public static function getCallbacks()
     {
         return [
-            'result.model' => function ($model) {
+            'result#model' => function ($model) {
                 $model->save();
             },
         ];

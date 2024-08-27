@@ -15,7 +15,7 @@ class SoftDeleteService extends Service
     public static function getCallbacks()
     {
         return [
-            'result.model' => function ($model) {
+            'result#model' => function ($model) {
                 $model->deleted_at = (new \DateTime())->format('Y-m-d H:i:s');
                 $model->save();
             },

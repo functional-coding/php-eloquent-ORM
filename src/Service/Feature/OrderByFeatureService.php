@@ -16,7 +16,7 @@ class OrderByFeatureService extends Service
     public static function getCallbacks()
     {
         return [
-            'query.order_by_array' => function ($orderByArray, $query) {
+            'query#order_by_array' => function ($orderByArray, $query) {
                 foreach ($orderByArray as $key => $direction) {
                     $query->orderBy($key, $direction);
                 }

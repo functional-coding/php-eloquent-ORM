@@ -19,7 +19,7 @@ class ExpandsFeatureService extends Service
     public static function getCallbacks()
     {
         return [
-            'result.expands' => function ($expands, $result) {
+            'result#expands' => function ($expands, $result) {
                 $expands = preg_split('/\s*,\s*/', $expands);
 
                 if ($result instanceof Model) {

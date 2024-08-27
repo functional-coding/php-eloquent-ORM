@@ -14,7 +14,7 @@ class LimitFeatureService extends Service
     public static function getCallbacks()
     {
         return [
-            'query.limit' => function ($limit, $query) {
+            'query#limit' => function ($limit, $query) {
                 $query->take($limit);
             },
         ];

@@ -17,7 +17,7 @@ class FieldsFeatureService extends Service
     public static function getCallbacks()
     {
         return [
-            'query.fields' => function ($availableFields, $query, $fields = '') {
+            'query#fields' => function ($availableFields, $query, $fields = '') {
                 $fields = $fields ? preg_split('/\s*,\s*/', $fields) : $availableFields;
                 $modelClass = get_class($query->getModel());
                 $model = new $modelClass;
@@ -30,7 +30,7 @@ class FieldsFeatureService extends Service
                 $query->select($fields);
             },
 
-            'result.fields:after_commit' => function ($availableFields, $modelClass, $result, $fields = '') {
+            'result#fields@defer' => function ($availableFields, $modelClass, $result, $fields = '') {
                 $fields = $fields ? preg_split('/\s*,\s*/', $fields) : $availableFields;
                 $model = new $modelClass;
                 $fields = array_intersect($fields, array_keys($model->toArray()));

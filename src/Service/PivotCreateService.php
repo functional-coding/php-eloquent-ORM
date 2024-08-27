@@ -15,7 +15,7 @@ class PivotCreateService extends Service
     public static function getCallbacks()
     {
         return [
-            'model.related' => function ($model, $related, $relatedMethod) {
+            'model#related' => function ($model, $related, $relatedMethod) {
                 $model->{$relatedMethod}()->attach($related->getKey());
             },
         ];

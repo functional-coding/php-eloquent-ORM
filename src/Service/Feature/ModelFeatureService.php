@@ -16,7 +16,7 @@ class ModelFeatureService extends Service
     public static function getCallbacks()
     {
         return [
-            'query.id' => function ($id, $query) {
+            'query#id' => function ($id, $query) {
                 $query->where($query->getModel()->getKeyName(), $id);
             },
         ];

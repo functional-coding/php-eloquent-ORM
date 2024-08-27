@@ -17,7 +17,7 @@ class OffsetPaginationService extends Service
     public static function getCallbacks()
     {
         return [
-            'query.skip' => function ($query, $skip) {
+            'query#skip' => function ($query, $skip) {
                 $query->skip($skip);
             },
         ];

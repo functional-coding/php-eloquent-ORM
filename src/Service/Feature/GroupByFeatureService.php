@@ -16,7 +16,7 @@ class GroupByFeatureService extends Service
     public static function getCallbacks()
     {
         return [
-            'query.group_by' => function ($groupBy, $query) {
+            'query#group_by' => function ($groupBy, $query) {
                 $groupBy = preg_replace('/\s*,\s*/', ',', $groupBy);
                 $arr = \explode(',', $groupBy);
 
