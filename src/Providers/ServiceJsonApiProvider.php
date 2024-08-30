@@ -1,13 +1,13 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Providers;
+namespace SimplifyServiceLayer\ORM\Eloquent\Providers;
 
-use FunctionalCoding\Service;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use SimplifyServiceLayer\Service;
 
 class ServiceJsonApiProvider extends ServiceProvider
 {

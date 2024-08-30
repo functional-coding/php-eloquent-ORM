@@ -1,6 +1,6 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Http;
+namespace SimplifyServiceLayer\ORM\Eloquent\Http;
 
 class RequestInputMiddleware
 {

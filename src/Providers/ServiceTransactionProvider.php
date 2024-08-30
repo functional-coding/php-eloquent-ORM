@@ -1,10 +1,10 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Providers;
+namespace SimplifyServiceLayer\ORM\Eloquent\Providers;
 
-use FunctionalCoding\Service;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
+use SimplifyServiceLayer\Service;
 
 class ServiceTransactionProvider extends ServiceProvider
 {

@@ -1,14 +1,15 @@
 {
-    "name": "functional-coding/eloquent-orm",
-    "description": "eloquent ORM service using `functional-coding/base`",
+    "name": "simplify-service-layer/eloquent-orm",
+    "description": "eloquent ORM service using `simplify-service-layer/base`",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
-            "FunctionalCoding\\ORM\\Eloquent\\": "src/",
-            "FunctionalCoding\\ORM\\Eloquent\\Tests\\": "tests/"
+            "SimplifyServiceLayer\\ORM\\Eloquent\\": "src/",
+            "SimplifyServiceLayer\\ORM\\Eloquent\\Tests\\": "tests/"
         }
     },
     "require": {
-        "functional-coding/base": "dev-master",
+        "simplify-service-layer/base": "dev-master",
         "illuminate/database": "^8.0",
         "illuminate/pagination": "^8.0",
         "illuminate/support": "^8.0",

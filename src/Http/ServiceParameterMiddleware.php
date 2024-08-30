@@ -1,9 +1,9 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Http;
+namespace SimplifyServiceLayer\ORM\Eloquent\Http;
 
-use FunctionalCoding\Service;
 use Illuminate\Support\Arr;
+use SimplifyServiceLayer\Service;
 
 class ServiceParameterMiddleware
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Service\Feature;
+namespace SimplifyServiceLayer\ORM\Eloquent\Service\Feature;
 
-use FunctionalCoding\Service;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
+use SimplifyServiceLayer\Service;
 
 class ExpandsFeatureService extends Service
 {

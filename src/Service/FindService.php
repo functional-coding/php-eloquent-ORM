@@ -1,11 +1,11 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Service;
+namespace SimplifyServiceLayer\ORM\Eloquent\Service;
 
-use FunctionalCoding\ORM\Eloquent\Service\Feature\ExpandsFeatureService;
-use FunctionalCoding\ORM\Eloquent\Service\Feature\FieldsFeatureService;
-use FunctionalCoding\ORM\Eloquent\Service\Feature\ModelFeatureService;
-use FunctionalCoding\Service;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\ExpandsFeatureService;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\FieldsFeatureService;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\ModelFeatureService;
+use SimplifyServiceLayer\Service;
 
 class FindService extends Service
 {

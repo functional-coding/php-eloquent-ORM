@@ -1,15 +1,15 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Service;
+namespace SimplifyServiceLayer\ORM\Eloquent\Service;
 
-use FunctionalCoding\ORM\Eloquent\Service\Feature\ExpandsFeatureService;
-use FunctionalCoding\ORM\Eloquent\Service\Feature\FieldsFeatureService;
-use FunctionalCoding\ORM\Eloquent\Service\Feature\GroupByFeatureService;
-use FunctionalCoding\ORM\Eloquent\Service\Feature\LimitFeatureService;
-use FunctionalCoding\ORM\Eloquent\Service\Feature\OrderByFeatureService;
-use FunctionalCoding\ORM\Eloquent\Service\Pagination\CursorPaginationService;
-use FunctionalCoding\ORM\Eloquent\Service\Pagination\OffsetPaginationService;
-use FunctionalCoding\Service;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\ExpandsFeatureService;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\FieldsFeatureService;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\GroupByFeatureService;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\LimitFeatureService;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\OrderByFeatureService;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Pagination\CursorPaginationService;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Pagination\OffsetPaginationService;
+use SimplifyServiceLayer\Service;
 
 class PaginationListService extends Service
 {

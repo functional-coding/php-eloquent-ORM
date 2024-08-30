@@ -1,9 +1,9 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Service\Feature;
+namespace SimplifyServiceLayer\ORM\Eloquent\Service\Feature;
 
-use FunctionalCoding\Service;
 use Illuminate\Database\Eloquent\Model;
+use SimplifyServiceLayer\Service;
 
 class FieldsFeatureService extends Service
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Service;
+namespace SimplifyServiceLayer\ORM\Eloquent\Service;
 
-use FunctionalCoding\ORM\Eloquent\Service\Feature\ModelFeatureService;
-use FunctionalCoding\Service;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\ModelFeatureService;
+use SimplifyServiceLayer\Service;
 
 class UpdatingService extends Service
 {

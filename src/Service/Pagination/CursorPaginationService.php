@@ -1,9 +1,9 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Service\Pagination;
+namespace SimplifyServiceLayer\ORM\Eloquent\Service\Pagination;
 
-use FunctionalCoding\ORM\Eloquent\Service\Feature\OptimizeQueryBuilderFeatureService;
-use FunctionalCoding\Service;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\OptimizeQueryBuilderFeatureService;
+use SimplifyServiceLayer\Service;
 
 class CursorPaginationService extends Service
 {

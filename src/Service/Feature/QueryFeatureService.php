@@ -1,8 +1,8 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Service\Feature;
+namespace SimplifyServiceLayer\ORM\Eloquent\Service\Feature;
 
-use FunctionalCoding\Service;
+use SimplifyServiceLayer\Service;
 
 class QueryFeatureService extends Service
 {

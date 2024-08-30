@@ -1,11 +1,11 @@
 <?php
 
-namespace FunctionalCoding\ORM\Eloquent\Service\Pagination;
+namespace SimplifyServiceLayer\ORM\Eloquent\Service\Pagination;
 
-use FunctionalCoding\ORM\Eloquent\Service\Feature\OptimizeQueryBuilderFeatureService;
-use FunctionalCoding\Service;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use SimplifyServiceLayer\ORM\Eloquent\Service\Feature\OptimizeQueryBuilderFeatureService;
+use SimplifyServiceLayer\Service;
 
 class OffsetPaginationService extends Service
 {
