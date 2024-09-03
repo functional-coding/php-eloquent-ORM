@@ -29,7 +29,6 @@ class RandomListService extends Service
     {
         return [
             'result' => function ($optimizeQueryBuilder, $query) {
-
                 return $optimizeQueryBuilder($query)->get();
             },
         ];

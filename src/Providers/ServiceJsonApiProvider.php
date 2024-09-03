@@ -57,7 +57,7 @@ class ServiceJsonApiProvider extends ServiceProvider
                         'per_page' => $result->perPage(),
                         'last_page' => $result->lastPage(),
                         'total' => $result->total(),
-                    ]
+                    ],
                 ];
             }
 

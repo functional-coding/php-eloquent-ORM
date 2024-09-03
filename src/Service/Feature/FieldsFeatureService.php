@@ -20,7 +20,7 @@ class FieldsFeatureService extends Service
             'query#fields' => function ($availableFields, $query, $fields = '') {
                 $fields = $fields ? preg_split('/\s*,\s*/', $fields) : $availableFields;
                 $modelClass = get_class($query->getModel());
-                $model = new $modelClass;
+                $model = new $modelClass();
                 $fields = array_diff($fields, array_keys($model->toArray()));
 
                 foreach ($fields as $i => $field) {
@@ -32,7 +32,7 @@ class FieldsFeatureService extends Service
 
             'result#fields@defer' => function ($availableFields, $modelClass, $result, $fields = '') {
                 $fields = $fields ? preg_split('/\s*,\s*/', $fields) : $availableFields;
-                $model = new $modelClass;
+                $model = new $modelClass();
                 $fields = array_intersect($fields, array_keys($model->toArray()));
 
                 if ($result instanceof Model) {

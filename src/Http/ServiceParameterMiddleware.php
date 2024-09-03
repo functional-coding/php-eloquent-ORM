@@ -47,7 +47,7 @@ class ServiceParameterMiddleware
             'order_by',
             'group_by',
             'cursor_id',
-            'page'
+            'page',
         ] as $key) {
             if (in_array($key, $ruleListKeys) || $request->offsetExists($key)) {
                 $data[$key] = Arr::get($request->all(), $key, '');
